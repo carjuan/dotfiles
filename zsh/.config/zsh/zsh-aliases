@@ -1,0 +1,98 @@
+#!usr/bin/env bash
+
+# -0 Change xargs to expect NUL (``\0'') characters as separators, instead of spaces and newlines.  This is expected to be used in concert with the -print0 function in find(1).
+# -print0 this primary always evaluates to true.  It prints the pathname of the current file to standard output, followed by an ASCII NUL character (character code 0).
+alias zsh-update-plugins="find "$ZDOTDIR/plugins" -type d -exec test -e '{}/.git' ';' -print0 | xargs -I dirpath -0 git -C dirpath pull -q"
+
+# ls color output -G for osx and --color=auto for linux
+ls --color=auto &> /dev/null && alias ll='ls --color=auto -hAlt' || alias ll='ls -GhAlt'
+
+alias ls='exa --group-directories-first'
+alias ll='exa -l --icons --no-user --group-directories-first --time-style long-iso'
+alias la='exa -la --icons --no-user --group-directories-first --time-style long-iso'
+
+# confirm before overwriting sm
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+
+# Colorize grep output (good for log files)
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+
+
+# get top process eating memory
+alias psmem='ps auxf | sort -nr -k 4 | head -5'
+
+# get top process eating cpu ##
+alias pscpu='ps auxf | sort -nr -k 3 | head -5'
+
+# Get git aliases
+alias gital='cat $ZDOTDIR/zsh-aliases | tail -21'
+
+# Start Tmux with $XDG_CONFIG_HOME/tmux/*.tmux.conf
+alias tmux="tmux -f $XDG_CONFIG_HOME/tmux/.tmux.conf"
+
+#Check both mac and Linux
+platform=$(uname)
+case "$platform" in
+    "Darwin" )
+        {
+            CURRENT_OS="OSX"
+        } ;;
+    "Linux" )
+        {
+            CURRENT_OS="LINUX"
+        } ;;
+    *)
+        {
+            echo "Unsupported OS, for setting alias=firefox"
+        } ;;
+esac
+
+
+if [[ "$CURRENT_OS" == "OSX" ]];
+then
+    alias firefox="/Applications/Firefox\ Developer\ Edition.app/Contents/MacOS/firefox"
+elif [[ "$CURRENT_OS" == "LINUX" ]];
+then
+    alias firefox="firefox"
+fi
+
+# browser-sync
+alias bss="browser-sync start --server --files '**/*.css, **/*.html, **/*.js, !node_modules/**/*' --directory --port 7777 --browser firefox"
+
+# Lazygit
+alias lg="lazygit"
+
+#pnpm
+alias pn="pnpm"
+
+# ----------------------
+# Git Aliases
+# ----------------------
+alias gb='git branch -a'
+alias gbd='git branch -d'
+alias ga='git add'
+alias gaa='git add .'
+alias gaaa='git add -A'
+alias gco='git checkout'
+alias gcob='git checkout -b'
+alias gc='git commit'
+alias gcm='git commit -m'
+alias gd='git diff'
+alias gi='git_init_custom'
+alias gl='git log --oneline --graph --color --all --decorate'
+alias gp='git pull'
+alias gpsh='git push'
+alias gss='git status -s'
+alias gs='echo ""; echo "*********************************************"; echo -e "   DO NOT FORGET TO PULL BEFORE COMMITTING"; echo "*********************************************"; echo ""; git status'
+alias gr='git remote'
+alias grv='git remote -v'
+
+# ########## LINUX ONLY ALIAS ###############
+# Change default audio output
+# alsa_output.usb-SteelSeries_Arctis_Nova_Pro_Wireless-00.analog-stereo
+alias output-steel='alsa_output.usb-SteelSeries_Arctis_Nova_Pro_Wireless-00.analog-stereo'
+alias output-speakers='pactl set-default-sink alsa_output.pci-0000_2d_00.4.analog-stereo'

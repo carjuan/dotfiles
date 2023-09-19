@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# fzf-tmux: starts fzf in a tmux pane
+# usage: fzf-tmux [LAYOUT OPTIONS] [--] [FZF OPTIONS]
+
+FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --header='Select pane to kill'"
+
+panes=$(tmux list-panes -F "#P: #{pane_current_command} > #{pane_current_path} --> #{b:pane_current_path}")
+
+target=$(printf "[current]\n%s\n[cancel]" "$panes" | eval "$FZF_TMUX_BIN" "$TMUX_FZF_OPTIONS")
+
+[[ "$target" == "[cancel]" || -z "$target" ]] && exit
+
+[[ "$target" == "[current]" ]] && \
+    target=$(tmux display-message -p '#{pane_index}') && \
+    tmux kill-pane -t "$target" && \
+    exit
+
+target=$(echo "$target" | awk -F':' '{print $1}')
+
+tmux kill-pane -t "$target"

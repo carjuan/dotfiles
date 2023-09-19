@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+source "${XDG_CONFIG_HOME}/.config/tmux/scripts/utils"
+
+FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --header='Select the process to kill'"
+TMUX_FZF_OPTIONS="$TMUX_FZF_OPTIONS -m --preview 'echo {}' --preview-window down:3:wrap --min-height 15"
+
+ps_selected=$(ps -ef | sed 1d | eval "$FZF_TMUX_BIN $TMUX_FZF_OPTIONS" | awk -F' ' '{print $2}')
+
+
+[[ -z "$ps_selected" ]] && exit
+
+kill -15 "$ps_selected"
+
+
+# fzf -m --preview 'echo {}' --preview-window down:3:wrap --min-height 15 < <(command ps -ef | sed 1d) | awk -F' ' '{print $2}' | xargs kill -9

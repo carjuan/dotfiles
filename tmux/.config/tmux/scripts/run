@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+source "${XDG_CONFIG_HOME}/tmux/scripts/utils"
+
+FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --header='Select a subroutine'"
+
+routines="Server\nNode"
+
+selected=$(printf "$routines" | eval "$FZF_TMUX_BIN" "$TMUX_FZF_OPTIONS")
+
+
+if ! selected_is_empty "$selected";
+then
+    FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --header='Start $selected in'"
+    current_active_pane_dir=$(tmux list-panes -F "#{pane_active}:#{pane_current_path}" | grep -E "^1" | awk -F':' '{print $2}')
+
+    if [[ "$selected" == "Node" ]];
+    then
+        files=$(ls -a "$current_active_pane_dir" | grep -E "^.[a-zA-Z]")
+        selected=$(echo "$files" | eval "$FZF_TMUX_BIN" "$TMUX_FZF_OPTIONS")
+
+        # run node inspect on selected
+        
+    fi
+
+
+    # selected=$(echo "$current_active_pane_dir" | eval "$FZF_TMUX_BIN" "$TMUX_FZF_OPTIONS")
+
+    if ! selected_is_empty "$selected";
+    then
+        echo "$selected"
+    fi
+     exit
+fi
+
+exit 
+

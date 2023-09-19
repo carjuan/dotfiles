@@ -1,0 +1,15 @@
+# no stow directory path files
+zsh/.config/zsh/plugins
+zsh/.config/zsh/.zcompdump
+.zsh_history
+.zsh_sessions
+zsh/plugins
+zsh/.zcompdump
+terminfo
+tmux/plugins
+lazy-lock.json
+configstore
+gh
+neofetch
+ROADMAP.md
+

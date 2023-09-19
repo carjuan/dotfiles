@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+
+UNAME_OUT="$(uname -s)"
+PNPM_HOME=""
+
+case "${UNAME_OUT}" in
+    Linux*)
+        # pnpm
+        export PNPM_HOME="/home/juanse/.local/share/pnpm"
+        # pnpm end
+
+        if command -v i3 &>/dev/null;
+        then
+          dropbox start &>/dev/null
+        fi
+
+        export MANPAGER='vim +Man!'
+        export PATH=$PATH:/opt/mssql/bin
+        export PATH=$PATH:/opt/mssql-tools/bin
+        nvidia-settings -a '[gpu:0]/GPUFanControlState=1' &> /dev/null
+        nvidia-settings -a '[fan]/GPUTargetFanSpeed=50' &> /dev/null
+
+        if pgrep tmux &>/dev/null && ! pgrep dropbox &>/dev/null;
+        then
+          tmux rename-window running-dropbox &>/dev/null
+          dropbox start &>/dev/null
+        else
+          echo -e "No need to start dropbox" 
+        fi
+
+        # Adds  brew /bin to path
+        eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+        ;;
+
+    Darwin*)
+        # pnpm
+        export PNPM_HOME="/Users/juanse/.local/share/pnpm"
+        # pnpm end
+esac
+
+export PATH="$PNPM_HOME:$PATH"
+

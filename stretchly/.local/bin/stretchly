@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+STRETCHLY_PATH=$(cd ${HOME}/stretch* && pwd)
+
+ELECTRON_CLI="$STRETCHLY_PATH/node_modules/electron/cli.js"
+
+STRETCHLY_BIN="${STRETCHLY_PATH}/app"
+
+eval "$ELECTRON_CLI $STRETCHLY_BIN"

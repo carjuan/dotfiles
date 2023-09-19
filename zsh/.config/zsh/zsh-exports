@@ -1,0 +1,54 @@
+#!/bin/sh
+
+# Changes pager to use in nvim
+# NOTE: nvim will be used if vim has been symlinked to nvim
+
+
+# Environment variables set everywhere
+export EDITOR="vim"
+export TERMINAL="alacritty"
+export BROWSER="brave"
+export DOTNET_CLI_TELEMETRY_OPTOUT=true 
+
+# XDF CONIG
+export XDG_CONFIG_HOME=$HOME/.config
+export XDG_CACHE_HOME=$HOME/.cache
+export XDG_DATA_HOME=$HOME/.local/share
+
+# zsh config dir
+export ZDOTDIR=$HOME/.config/zsh
+
+HISTFILE="$XDG_DATA_HOME"/zsh/history/.zsh_history
+HISTSIZE=1000000
+SAVEHIST=1000000
+
+#FZF
+export FZF_DEFAULT_OPTS='
+    --layout=reverse
+    --color fg:#ebdbb2,bg:#121212,hl:#ffa348,fg+:#ebdbb2,bg+:#3c3836,hl+:#fabd2f
+    --color info:#83a598,prompt:#ffa348,spinner:#fabd2f,pointer:#ffa348,marker:#ffa348,header:#665c54
+    --height 40%
+'
+
+# Go
+export PATH="${HOME}/go/bin:$PATH"
+
+# Alacritty
+export PKG_CONFIG_PATH=/usr/lib/x86_64-linux-gnu/pkgconfig
+
+# for zsh viins to work jj 'vi-cmd-mode'
+export KEYTIMEOUT=15
+
+export NVIM_DOTFILES="$XDG_CONFIG_HOME/nvim"
+
+export STARSHIP_CONFIG=$XDG_CONFIG_HOME/starship/config.toml
+
+# helps TMUX display proper LS dircolors when -G flag is passed
+# Values can be:
+# tmux-256color
+# xterm-256color 
+# screen-256color
+# NOTE: xterm-256color can screw TMUX {ls -G} 
+export TERM=xterm-256color
+
+export MANWIDTH=999

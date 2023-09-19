@@ -1,0 +1,44 @@
+:root {
+    /* --variables */
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    /* responsive font size here */
+}
+
+body {
+    /* body inheritance */
+    /* color and font */
+}
+
+button,
+input {
+    font: inherit;
+}
+
+button {
+    background: transparent;
+    border: none;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+a {
+    color: inherit;
+}
+
+li {
+    list-style-type: none;
+}
+
+.wrapper {
+    max-width: 1440px;
+    margin: auto;
+}

@@ -1,0 +1,206 @@
+# Function to source files if they exist
+
+function zsh_source_file() {
+  [ -f "$ZDOTDIR/$1" ] && source "$ZDOTDIR/$1"
+}
+
+# Plugin Manager
+function zsh_install_plugin() {
+  # echo git repo and cut by delimeter '/' and passes field 2
+  # hello/world = PLUGIN_NAME = world
+  PLUGIN_NAME=$(echo $1 | cut -d / -f 2)
+  if [ -d "$ZDOTDIR/plugins/$PLUGIN_NAME" ]; then
+    # source already installed plugins
+    zsh_source_file "plugins/$PLUGIN_NAME/$PLUGIN_NAME.plugin.zsh" || \
+    zsh_source_file "plugins/$PLUGIN_NAME/$PLUGIN_NAME.zsh" || \
+    zsh_source_file "plugins/$PLUGIN_NAME/$PLUGIN_NAME.sh"
+  
+  else
+
+    git clone "https://github.com/$1.git" "$ZDOTDIR/plugins/$PLUGIN_NAME"
+
+  fi
+}
+
+function zsh_add_completion() {
+    PLUGIN_NAME=$(echo $1 | cut -d "/" -f 2)
+    if [ -d "$ZDOTDIR/plugins/$PLUGIN_NAME" ]; then 
+        # For completions
+		completion_file_path=$(ls $ZDOTDIR/plugins/$PLUGIN_NAME/_*)
+		fpath+="$(dirname "${completion_file_path}")"
+        zsh_add_file "plugins/$PLUGIN_NAME/$PLUGIN_NAME.plugin.zsh"
+    else
+        git clone "https://github.com/$1.git" "$ZDOTDIR/plugins/$PLUGIN_NAME"
+		fpath+=$(ls $ZDOTDIR/plugins/$PLUGIN_NAME/_*)
+        [ -f $ZDOTDIR/.zccompdump ] && $ZDOTDIR/.zccompdump
+    fi
+	completion_file="$(basename "${completion_file_path}")"
+	if [ "$2" = true ] && compinit "${completion_file:1}"
+}
+
+# Some utils
+function is_zsh_history() {
+  ZSH_HIST_DESTINATION_FOLDER="$XDG_DATA_HOME/zsh/history"
+  if ! [ -d "$ZSH_HIST_DESTINATION_FOLDER" ]; then
+    echo "starting to search for zsh_history destination folder..."
+    mkdir -p $ZSH_HIST_DESTINATION_FOLDER
+    touch $ZSH_HIST_DESTINATION_FOLDER/.zsh_history
+    echo "The zsh_history directory and .zsh_history file have been created"
+  fi 
+}
+
+
+function copywdir() {
+  pwd | pbcopy
+  echo "cwd copied to clipboard"
+}
+
+# Set up basic website
+function setwep {
+    # cd to current dir
+    echo "\n------------------------------"
+    echo "Checking if web boilerplate can be created"
+    echo "------------------------------ \n\n"
+
+    __CURRENT_DIR="$(cd "$(dirname pwd)" && pwd)"
+
+    # -n Test length of returned string is nonzero 
+    if [[ -n "$(find . -name '*.css' -o -name '*.html')" ]]; then
+        echo "1. Found .CSS or .HTML files already"
+        echo "2. Clean dir first before creating a boilerplate"
+        echo "3. Exiting now"
+        exit
+
+    else
+        echo "-----------------------------"
+        echo "Clean dir, ready to create web boilerplate"
+        echo "-----------------------------\n\n"
+        
+
+        # Check if an argument was provided
+        if [ -z "$@" ];
+        then
+            printf '\n web boilerplate script: %s\n' "no argument provided to script"
+            echo "FLAGS:"
+            echo "-s                sets up a basic website starter template"
+            echo "-i                sets up a basic starter template and a CSS folder with themes and core css for a web project"
+            exit
+        fi
+
+        for arg in "$@"; do
+            case "$arg" in
+                -i* ) 
+
+                    #if CSS folder is needed, boilerplate should be created
+                    for f in "${XDG_CONFIG_HOME}"/zsh/boilerplate/web-2/*
+                    do
+                        cp -rv "$f" "$__CURRENT_DIR"
+                    done
+
+                    echo "-----------------------------"
+                    echo "boilerplate created with -i flag :)"
+                    echo "-----------------------------"   
+
+                    ;;
+
+                -s* )
+
+                    #if simple front end boiler plate should be created
+                    for f in "${XDG_CONFIG_HOME}"/zsh/boilerplate/web-1/*
+                    do
+                        cp -rv "$f" "$__CURRENT_DIR"
+                    done
+
+                    echo "-----------------------------"
+                    echo "boilerplate created with -s flag :)"
+                    echo "-----------------------------"   
+                    ;;
+
+                -h* )
+
+                    echo "web boilerplate script usage:"
+                    echo "FLAGS:"
+            	    echo "-s                sets up a basic website starter template"
+            	    echo "-i                sets up a basic starter template and a CSS folder with themes and core css for a web project"
+                    echo "-h                prints this help man"
+                    ;;
+
+                * )
+                    printf '\n web boilerplate script: invalid argument provided: %s\n' "$arg"
+                    echo "FLAGS:"
+            	    echo "-s                sets up a basic website starter template"
+            	    echo "-i                sets up a basic starter template and a CSS folder with themes and core css for a web project"
+                    ;;
+            esac
+        done
+    fi
+}
+
+# Updates instructor git remote repo with current Github Token.
+function token_update {
+
+    # In unix-like systems, traditionally, exit status code '1' is interpreted as 'false' or 'error' and viceversa
+    if [[ ! $(git status) ]]; then
+        return 1
+    fi
+
+    local current_git_remote_url=$(git config --get remote.origin.url)
+    if [[ ! $current_git_remote_url ]]; then
+        printf "Found a Git repo but no remote repository added\n"
+        return 1
+    fi
+
+    local current_git_user_name=$(git config --get user.name)
+    local current_git_user_email=$(git config --get user.email)
+    local substring="instructor"
+
+    printf "🍴 - I update current git remote repo if .gitconfig 'user.email' contains *instructor*\n"
+    printf "🪑 Sit tight - Getting current user ...\n"
+    printf "Current user: %s! \n" "$current_git_user_name" 
+    printf "Current email: %s! \n" "$current_git_user_email" 
+
+    if [[ ! "$current_git_user_email" =~ $substring ]]; then
+        printf "⛔ This remote repo: %s should not be tokenized as it does not point to 'instructor'!\n" $current_git_remote_url
+        return 1
+    fi
+
+    if [[ ! -a ~/.config/PAT.txt ]]; then
+        printf "⛔  Token file not found in %s. Place token file in correct path and try again!\n" $XDG_CONFIG_HOME
+        return 1
+    fi
+
+    local remote_url=""
+    # if current instructor remote repo has a token already
+    if [[ "$current_git_remote_url" =~ "@" ]]; then
+        remote_url="@$(echo "$current_git_remote_url" | awk -F"@" '{print $2}')"
+    else
+        remote_url="@$(echo "$current_git_remote_url" | awk -F"//" '{print $2}')"
+    fi
+
+    local personal_token_file=~/.config/PAT.txt
+    local instructor_token=$(cat $personal_token_file)
+    local protocol='https://'
+    local new_git_remote_url="${protocol}${instructor_token}${remote_url}"
+
+    printf "-----------------------------------------------------\n"
+    printf "git remote url will recieve the following changes:\n"
+    printf "From:➡️ %s.\n" "$current_git_remote_url"
+    printf "To:  ➡️ %s.\n" "$new_git_remote_url"
+    printf "-----------------------------------------------------\n"
+
+    read -q "response?Do you want to proceed? [y/N]"
+
+    printf "\n-----------------------------------------------------\n\n"
+
+    case "$response" in
+        y | Y)
+            printf "Updating remote repo with token ...\n"
+            git remote set-url origin $new_git_remote_url
+            printf "done.😊\n"
+            ;;
+        *)
+            echo "Aborting ..."
+            ;;
+    esac
+}
+

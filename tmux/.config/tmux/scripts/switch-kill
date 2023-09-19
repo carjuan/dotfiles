@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+CURRENT_DIR="$(dirname ${BASH_SOURCE[0]})"
+FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --header='Select state'" 
+
+states="session|window|pane|process|run"
+
+target_state=$(printf "[cancel]\n%s" "$states" | tr "|" "\n" | eval "$FZF_TMUX_BIN $TMUX_FZF_OPTIONS")
+
+[[ "$target_state" == "[cancel]" || -z "$target_state" ]] && exit
+
+eval "${CURRENT_DIR}/$target_state"

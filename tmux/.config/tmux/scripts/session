@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# fzf-tmux: starts fzf in a tmux pane
+# usage: fzf-tmux [LAYOUT OPTIONS] [--] [FZF OPTIONS]
+
+FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --header='Select session to switch'"
+
+sessions=$(tmux list-sessions)
+
+target=$(printf "[cancel]\n%s" "$sessions" | eval "$FZF_TMUX_BIN" "$TMUX_FZF_OPTIONS")
+
+[[ "$target" == "[cancel]" || -z "$target" ]] && exit
+
+target=$(echo "$target" | awk -F':' '{print $1}')
+
+tmux switch-client -t "$target"
+
+
+# current_dir="$(cd $(dirname "${BASH_SOURCE[0]}"))" && pwd
+# pane_to_kill=$(tmux list-panes -F "#P: #{pane_current_command} > #{pane_current_path} --> #{b:pane_current_path}"  | fzf | awk -F':' '{print $1}')
+#
+# [[ -z $pane_to_kill ]] && exit
+#
+# tmux kill-pane -tk
