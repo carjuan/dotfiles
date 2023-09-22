@@ -16,6 +16,7 @@ opt.cmdheight = 0 -- Experimental feature
 opt.laststatus = 3
 opt.foldmethod = "marker"
 opt.colorcolumn = "90"
+opt.conceallevel = 0 -- Shows text normally, specially for .json files ("") and .md lang
 
 -- More info on :h statusline
 vim.cmd([[set winbar=%=%r%m%w\ %#OwnWinBar#\ %L\ lines\ in:\ %f]])
