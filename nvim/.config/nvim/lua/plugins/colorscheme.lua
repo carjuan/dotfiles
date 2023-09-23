@@ -38,15 +38,67 @@ return {
             vim.g.adwaita_darker = true -- for darker version
             vim.g.adwaita_disable_cursorline = true -- to disable cursorline
             vim.g.adwaita_transparent = true -- makes the background transparent
-            vim.cmd("colorscheme adwaita")
         end,
     },
 
-    -- configure LazyVim to load gruvbox
+    -- add nightfox
+    -- setup in 'lazyvim' opts colorscheme options: nightfox || carbonfox || terafox || nordfox
+    -- duskfox || dawnfox || day fox
+    {
+        "EdenEast/nightfox.nvim",
+    },
+
+    -- add catppuccin
+    {
+        "catppuccin/nvim",
+        name = "catppuccin",
+        priority = 1000,
+        config = function()
+            require("catppuccin").setup({
+                flavour = "mocha", -- latte, frappe, macchiato, mocha
+                term_colors = true,
+                transparent_background = false,
+                no_italic = false,
+                no_bold = false,
+                styles = {
+                    comments = {},
+                    conditionals = {},
+                    loops = {},
+                    functions = {},
+                    keywords = {},
+                    strings = {},
+                    variables = {},
+                    numbers = {},
+                    booleans = {},
+                    properties = {},
+                    types = {},
+                },
+                color_overrides = {
+                    mocha = {
+                        base = "#000000",
+                        mantle = "#000000",
+                        crust = "#000000",
+                    },
+                },
+                highlight_overrides = {
+                    mocha = function(C)
+                        return {
+                            TabLineSel = { bg = C.pink },
+                            CmpBorder = { fg = C.surface2 },
+                            Pmenu = { bg = C.none },
+                            TelescopeBorder = { link = "FloatBorder" },
+                        }
+                    end,
+                },
+            })
+        end,
+    },
+
+    -- configure LazyVim to load colorscheme
     {
         "LazyVim/LazyVim",
         opts = {
-            colorscheme = "adwaita",
+            colorscheme = "catppuccin",
         },
     },
 }
