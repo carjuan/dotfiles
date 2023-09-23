@@ -8,7 +8,6 @@ zsh/plugins
 zsh/.zcompdump
 terminfo
 tmux/plugins
-nvim/.config/nvim/lua/plugins/set-theme.lua
 lazy-lock.json
 configstore
 gh
