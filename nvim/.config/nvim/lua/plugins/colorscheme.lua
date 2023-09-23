@@ -1,5 +1,5 @@
 return {
-    -- add gruvebox.nvim
+    -- add gruvbox.nvim
     {
         "ellisonleao/gruvbox.nvim",
         opts = { transparent_mode = true },
