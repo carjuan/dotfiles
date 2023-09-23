@@ -41,6 +41,13 @@ return {
         end,
     },
 
+    -- add nightfox
+    -- setup in 'lazyvim' opts colorscheme options: nightfox || carbonfox || terafox || nordfox
+    -- duskfox || dawnfox || day fox
+    {
+        "EdenEast/nightfox.nvim",
+    },
+
     -- configure LazyVim to load gruvbox
     {
         "LazyVim/LazyVim",
