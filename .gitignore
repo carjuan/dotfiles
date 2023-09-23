@@ -1,6 +1,7 @@
 # no stow directory path files
 zsh/.config/zsh/plugins
 zsh/.config/zsh/.zcompdump
+zsh/.config/zsh/fzf-env/theme
 .zsh_history
 .zsh_sessions
 zsh/plugins

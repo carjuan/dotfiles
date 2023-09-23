@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # Some useful options (man zshoptions)
 
@@ -42,6 +42,8 @@ zsh_source_file "zsh-aliases"
 zsh_source_file "zsh-prompt"
 zsh_source_file "zsh-vim-mode"
 zsh_source_file "zsh-function-aliases"
+zsh_source_file "fzf-env/fzf"
+zsh_source_file "fzf-env/theme"
 
 # Plugin Manager
 zsh_install_plugin "zsh-users/zsh-autosuggestions"
@@ -76,11 +78,5 @@ bindkey '^e' edit-command-line
 # NVM - Node Version Manager
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-
-# FZF is installed through brew instead
-# [ -f "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh ] && source "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh
-#
-# FZF key-bindings
-[ -f "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/key-bindings.zsh ] && source "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/key-bindings.zsh
 
 alias luamake=/home/juanse/lua-language-server/3rd/luamake/luamake
