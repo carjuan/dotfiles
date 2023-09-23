@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+# neopunk
+FZF_DEFAULT_OPTS='
+    --layout=reverse
+    --color fg:#23B0BA,bg:#121212,hl:#ffa348,fg+:#ebdbb2,bg+:#000000,hl+:#fabd2f
+    --color info:#83a598,prompt:#23B0BA,spinner:#fabd2f,pointer:#23B0BA,marker:#23B0BA,header:#23B0BA
+    --prompt="➤ "
+    --height 80%
+'
+
+#gruvbox
+# FZF_DEFAULT_OPTS='
+#     --layout=reverse
+#     --color fg:#ebdbb2,bg:#121212,hl:#ffa348,fg+:#ebdbb2,bg+:#000000,hl+:#fabd2f
+#     --color info:#83a598,prompt:#ffa348,spinner:#fabd2f,pointer:#ffa348,marker:#ffa348,header:#665c54
+#     --prompt="➤ "
+#     --height 80%
+#'
