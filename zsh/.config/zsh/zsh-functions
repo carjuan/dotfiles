@@ -136,6 +136,28 @@ function setwep {
     fi
 }
 
+# HTML markup validator (WIP)
+function mkvalidator {
+    for file in *.html; do
+        printf '\n-------------------------------\n'
+        echo "Validating file: $file"
+
+        # More info on API: https://validator.w3.org/docs/api.html
+        results=$(curl -H 'Content-Type: text/html; charset=utf-8' \
+            --data-binary @"$file" \
+            'https://validator.w3.org/nu/?out=json')
+
+        echo "Results for $file:"
+        echo "$results" | jq
+
+        # Filtering messages
+        # echo "$results" | jq '[.messages[] | select(.type == "error") | {message: .message}]'
+        printf '\n-------------------------------\n'
+    done
+}
+
+
+
 # Updates instructor git remote repo with current Github Token.
 function token_update {
 
