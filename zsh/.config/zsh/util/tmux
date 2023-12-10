@@ -1,0 +1,14 @@
+# Tmux Layout
+function ide() {
+  tmux split-window -v
+  tmux resize-pane -t 1 -y 16%
+  tmux split-window -h
+  tmux split-window -h
+  tmux split-window -h
+  tmux resize-pane -t 1 -x 35%
+  tmux resize-pane -t 2 -x 35%
+  tmux resize-pane -t 3 -x 15%
+  tmux resize-pane -t 4 -x 15%
+  tmux select-pane -t 0
+}
+

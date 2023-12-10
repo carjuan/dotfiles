@@ -1,0 +1,80 @@
+# Set up basic website
+function setweb {
+    # cd to current dir
+    echo "\n------------------------------"
+    echo "Checking if web boilerplate can be created"
+    echo "------------------------------ \n\n"
+
+    __CURRENT_DIR="$(cd "$(dirname pwd)" && pwd)"
+
+    # -n Test length of returned string is nonzero 
+    if [[ -n "$(find . -name '*.css' -o -name '*.html')" ]]; then
+        echo "1. Found .CSS or .HTML files already"
+        echo "2. Clean dir first before creating a boilerplate"
+        echo "3. Exiting now"
+        exit
+
+    else
+        echo "-----------------------------"
+        echo "Clean dir, ready to create web boilerplate"
+        echo "-----------------------------\n\n"
+        
+
+        # Check if an argument was provided
+        if [ -z "$@" ];
+        then
+            printf '\n web boilerplate script: %s\n' "no argument provided to script"
+            echo "FLAGS:"
+            echo "-s                sets up a basic website starter template"
+            echo "-i                sets up a basic starter template and a CSS folder with themes and core css for a web project"
+            exit
+        fi
+
+        for arg in "$@"; do
+            case "$arg" in
+                -i* ) 
+
+                    #if CSS folder is needed, boilerplate should be created
+                    for f in "${XDG_CONFIG_HOME}"/zsh/boilerplate/web-2/*
+                    do
+                        cp -rv "$f" "$__CURRENT_DIR"
+                    done
+
+                    echo "-----------------------------"
+                    echo "boilerplate created with -i flag :)"
+                    echo "-----------------------------"   
+
+                    ;;
+
+                -s* )
+
+                    #if simple front end boiler plate should be created
+                    for f in "${XDG_CONFIG_HOME}"/zsh/boilerplate/web-1/*
+                    do
+                        cp -rv "$f" "$__CURRENT_DIR"
+                    done
+
+                    echo "-----------------------------"
+                    echo "boilerplate created with -s flag :)"
+                    echo "-----------------------------"   
+                    ;;
+
+                -h* )
+
+                    echo "web boilerplate script usage:"
+                    echo "FLAGS:"
+            	    echo "-s                sets up a basic website starter template"
+            	    echo "-i                sets up a basic starter template and a CSS folder with themes and core css for a web project"
+                    echo "-h                prints this help man"
+                    ;;
+
+                * )
+                    printf '\n web boilerplate script: invalid argument provided: %s\n' "$arg"
+                    echo "FLAGS:"
+            	    echo "-s                sets up a basic website starter template"
+            	    echo "-i                sets up a basic starter template and a CSS folder with themes and core css for a web project"
+                    ;;
+            esac
+        done
+    fi
+}
