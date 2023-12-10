@@ -1,0 +1,50 @@
+# Function to source files if they exist
+
+function zsh_source_file() {
+  [ -f "$ZDOTDIR/$1" ] && source "$ZDOTDIR/$1"
+}
+
+# Plugin Manager
+function zsh_install_plugin() {
+  # echo git repo and cut by delimeter '/' and passes field 2
+  # hello/world = PLUGIN_NAME = world
+  PLUGIN_NAME=$(echo $1 | cut -d / -f 2)
+  if [ -d "$ZDOTDIR/plugins/$PLUGIN_NAME" ]; then
+    # source already installed plugins
+    zsh_source_file "plugins/$PLUGIN_NAME/$PLUGIN_NAME.plugin.zsh" || \
+    zsh_source_file "plugins/$PLUGIN_NAME/$PLUGIN_NAME.zsh" || \
+    zsh_source_file "plugins/$PLUGIN_NAME/$PLUGIN_NAME.sh"
+  
+  else
+
+    git clone "https://github.com/$1.git" "$ZDOTDIR/plugins/$PLUGIN_NAME"
+
+  fi
+}
+
+function zsh_add_completion() {
+    PLUGIN_NAME=$(echo $1 | cut -d "/" -f 2)
+    if [ -d "$ZDOTDIR/plugins/$PLUGIN_NAME" ]; then 
+        # For completions
+		completion_file_path=$(ls $ZDOTDIR/plugins/$PLUGIN_NAME/_*)
+		fpath+="$(dirname "${completion_file_path}")"
+        zsh_add_file "plugins/$PLUGIN_NAME/$PLUGIN_NAME.plugin.zsh"
+    else
+        git clone "https://github.com/$1.git" "$ZDOTDIR/plugins/$PLUGIN_NAME"
+		fpath+=$(ls $ZDOTDIR/plugins/$PLUGIN_NAME/_*)
+        [ -f $ZDOTDIR/.zccompdump ] && $ZDOTDIR/.zccompdump
+    fi
+	completion_file="$(basename "${completion_file_path}")"
+	if [ "$2" = true ] && compinit "${completion_file:1}"
+}
+
+# Some utils
+function is_zsh_history() {
+  ZSH_HIST_DESTINATION_FOLDER="$XDG_DATA_HOME/zsh/history"
+  if ! [ -d "$ZSH_HIST_DESTINATION_FOLDER" ]; then
+    echo "starting to search for zsh_history destination folder..."
+    mkdir -p $ZSH_HIST_DESTINATION_FOLDER
+    touch $ZSH_HIST_DESTINATION_FOLDER/.zsh_history
+    echo "The zsh_history directory and .zsh_history file have been created"
+  fi 
+}
