@@ -1,10 +1,11 @@
 return {
-    {
-        "nvim-lualine/lualine.nvim",
-        opts = {
-            options = {
-                theme = "horizon",
-            },
-        },
+  -- Status line theme
+  {
+    'nvim-lualine/lualine.nvim',
+    opts = {
+      options = {
+        theme = 'horizon',
+      },
     },
+  },
 }
