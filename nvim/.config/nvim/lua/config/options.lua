@@ -15,5 +15,14 @@ opt.foldmethod = 'marker'
 opt.colorcolumn = '90'
 opt.conceallevel = 0 -- Shows text normally, specially for .json files ("") and .md lang
 
--- More info on :h statusline
-vim.cmd([[set winbar=%=%r%m%w\ %#OwnWinBar#\ %L\ lines\ in:\ %f]])
+-- Filenames -> More info on :h statusline
+-- vim.cmd([[set winbar=%=%r%m%w\ %#OwnWinBar#\ %L\ lines\ in:\ %f]])
+-- ------
+-- UPDATE DEC 2023: I am using 'b0o/incline.nvim' instead of vim.cmd and winbar set
+-- plugin to get winbar status for file names and file descriptios.
+-- See /lua/plugins/ui for more info
+-- ------
+
+-- Undercurl
+vim.cmd([[let &t_Cs = "\e[4:3m"]])
+vim.cmd([[let &t_Ce = "\e[4:0m"]])
