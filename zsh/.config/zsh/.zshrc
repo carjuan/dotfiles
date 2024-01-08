@@ -57,6 +57,13 @@ zsh_install_plugin "rupa/z"
 # For more plugins: https://github.com/unixorn/awesome-zsh-plugins
 #
 
+
+#### Key-bindings override
+## FZF
+bindkey -r '^T'
+bindkey '^W' fzf-file-widget
+
+
 # Install completion plugins
 # zsh_add_completion "esc/conda-zsh-completion" false
 # More completions https://github.com/zsh-users/zsh-completions
