@@ -55,6 +55,14 @@ return {
         desc = 'Search for a string in your current working directory and get results live as you type, respects .gitignore',
       },
       {
+        ';k',
+        function()
+          local builtin = require('telescope.builtin')
+          builtin.keymaps()
+        end,
+        desc = 'Lists configured keymaps',
+      },
+      {
         '\\\\',
         function()
           local builtin = require('telescope.builtin')
