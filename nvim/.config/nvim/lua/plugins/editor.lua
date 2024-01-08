@@ -52,7 +52,16 @@ return {
           local builtin = require('telescope.builtin')
           builtin.live_grep()
         end,
-        desc = 'Search for a string in your current working directory and get results live as you type, respects .gitignore',
+        desc = 'Search for a string in your current working directory and get results \
+        live as you type, respects .gitignore',
+      },
+      {
+        ';k',
+        function()
+          local builtin = require('telescope.builtin')
+          builtin.keymaps()
+        end,
+        desc = 'Lists configured keymaps',
       },
       {
         '\\\\',
@@ -136,6 +145,14 @@ return {
     config = function(_, opts)
       local telescope = require('telescope')
       local actions = require('telescope.actions')
+      local actions_state = require('telescope.actions.state')
+      local edit_command = function(bufnr)
+        local entry = actions_state.get_selected_entry()
+        actions.close(bufnr)
+
+        -- edit command before execution
+        vim.api.nvim_feedkeys(':' .. entry.value, 'n', true)
+      end
       local fb_actions = require('telescope').extensions.file_browser.actions
 
       opts.defaults = vim.tbl_deep_extend('force', opts.defaults, {
@@ -154,6 +171,17 @@ return {
           initial_mode = 'normal',
           layout_config = {
             preview_cutoff = 9999,
+          },
+        },
+        command_history = {
+          mappings = {
+            ['i'] = {
+              [';q'] = actions.send_to_qflist,
+              ['<CR>'] = edit_command,
+            },
+            ['n'] = {
+              ['<CR>'] = edit_command,
+            },
           },
         },
       }
