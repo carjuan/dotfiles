@@ -96,6 +96,14 @@ return {
         desc = 'Lists Diagnostics for all open buffers or a specific buffer',
       },
       {
+        ';b',
+        function()
+          local builtin = require('telescope.builtin')
+          builtin.current_buffer_fuzzy_find()
+        end,
+        desc = 'Lists Diagnostics for all open buffers or a specific buffer',
+      },
+      {
         ';s',
         function()
           local builtin = require('telescope.builtin')
@@ -118,6 +126,13 @@ return {
           builtin.command_history()
         end,
         desc = 'Command History',
+      },
+      {
+        ';k',
+        function()
+          local builtin = require('telescope.builtin')
+          builtin.keymaps()
+        end,
       },
       {
         'sf',
