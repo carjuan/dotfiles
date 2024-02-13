@@ -11,7 +11,12 @@ Ensure you have the following installed on your system.
 #### Git
 
 ```
+# Install Git
 sudo apt update && sudo apt upgrade -y && sudo apt install git -y
+
+# Setup basic git config
+git config --global user.email "your_email@example.com"
+git config --global user.name "Your Name"
 ```
 
 #### Curl
@@ -55,10 +60,26 @@ chsh -s $(which zsh)
 # Logout and login again for changes to take effect
 ```
 
-#### Setup dotfiles repo and stow
+#### Setup SSH and dotfiles repo
 
 ```zsh
+# Generates a new ssh key
+ssh-keygen -t ed25519 -C "your_email@example.com"
 
+# If prompt for passphrase, hit enter to setup the defaults
+
+# Start the ssh-agent in th background
+eval "$(ssh-agent -s)"
+
+# Add public ssh key to GitHub
+cat ~/.ssh/id_ed25519.pub
+# Then select and copy the contents of the id_ed25519.pub file
+# displayed in the terminal to your clipboard
+
+# Then follow instructions on: [GitHub ssh key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
+
+# After adding your public ssh key in your GitHub account, clone your `dotfiles` repo
+cd ~ && git clone git@github.com:carjuan/dotfiles.git
 ```
 
 ## Macos
