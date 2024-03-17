@@ -10,11 +10,11 @@ notify "Setting up system fonts"
 # find the font you are interested in https://www.nerdfonts.com/font-downloads
 # preview the font: https://www.programmingfonts.org/
 # Make sure it is downloadable at [nerd-fonts-releases](https://github.com/ryanoasis/nerd-fonts/releases)
-# append font name to 'fclist'
-FONTS_TO_INSTALL="${DOTFILES}/font/fclist"
+# append font name to 'font_list'
+FONTS_TO_INSTALL="${DOTFILES}/font/font_list"
 
 if ! [[ -s ${FONTS_TO_INSTALL} ]]; then
-	print_error "file 'fclist' not found in ${DOTFILES}/font. Check your PATH"
+	print_error "file 'font_list' not found in ${DOTFILES}/font. Check your PATH"
 fi
 
 FONT_CACHE_DIR="${DOTFILES}/font/cache"
