@@ -15,12 +15,11 @@ require('lazy').setup({
       import = 'lazyvim.plugins',
       opts = {
         colorscheme = function()
-          vim.cmd('colorscheme oxocarbon')
+          vim.cmd('colorscheme catppuccin')
           vim.opt.background = 'dark'
         end,
       },
     },
-    -- import any extras modules here
     { import = 'lazyvim.plugins.extras.lang.typescript' },
     { import = 'lazyvim.plugins.extras.formatting.prettier' },
     { import = 'lazyvim.plugins.extras.linting.eslint' },

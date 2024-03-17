@@ -15,6 +15,14 @@ return {
         'sql',
         'svelte',
       })
+
+      -- ISSUE: Treesitter stopped highlighting 'md' files after breaking change
+      -- Remove markdown - until current theme 'Carbon' implements new 'treesitter' symbol names
+      -- URL: https://github.com/LazyVim/LazyVim/discussions/2536
+
+      -- opts.ensure_installed = vim.tbl_filter(function(i)
+      --   return not vim.tbl_contains({ 1 }, 'markdown')
+      -- end, opts.ensure_installed)
     end,
 
     -- the following adds a new extension as a filetype .json
