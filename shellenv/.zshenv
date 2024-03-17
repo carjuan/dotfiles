@@ -3,7 +3,7 @@ export EDITOR="vim"
 export TERMINAL="alacritty"
 export BROWSER="brave"
 
-# XDF CONIG
+# XDG CONIG
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_CACHE_HOME=$HOME/.cache
 export XDG_DATA_HOME=$HOME/.local/share
@@ -21,3 +21,4 @@ if command apt > /dev/null; then
 	# pactl list short sinks -- lists available audio outputs
 	pactl set-default-sink alsa_output.pci-0000_2d_00.4.analog-stereo
 fi
+. "$HOME/.cargo/env"
