@@ -6,7 +6,7 @@ source ./util.sh
 
 notify "Installing PNPM packages"
 
-ensure_dependency "pnpm"
+ensure_dependency "node" "pnpm"
 
 NODE_GLOBAL_PACKAGES="${DOTFILES}/dot_node_global_packages"
 
