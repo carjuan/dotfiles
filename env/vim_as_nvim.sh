@@ -10,7 +10,7 @@ notify "Setting up vim as nvim"
 
 USER_BIN="${HOME}/.local/bin"
 
-[[ ! -d ${USER_BIN} ]] && mkdir "${USER_BIN}"
+[[ ! -d ${USER_BIN} ]] && mkdir -p "${USER_BIN}"
 
 quiet_cd "${USER_BIN}"
 
