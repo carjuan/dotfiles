@@ -33,3 +33,7 @@ for folder in "${STOW_FOLDERS[@]}"; do
 	echo -e "----\n"
 
 done
+
+# Ensure new ~/.config/env is sourced
+[[ -s $HOME/.zshenv ]] && source "${HOME}/.zshenv"
+[[ -s $HOME/.config/zsh/.zshrc ]] && source "${HOME}/.config/zsh/.zshrc"

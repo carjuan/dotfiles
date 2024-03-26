@@ -49,9 +49,9 @@ esac
 
 ./vim_as_nvim.sh
 
-./pnpm.sh
-
 ./stow.sh
+
+./pnpm.sh
 
 ./fonts.sh
 
