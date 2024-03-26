@@ -21,4 +21,4 @@ if command apt > /dev/null; then
 	# pactl list short sinks -- lists available audio outputs
 	pactl set-default-sink alsa_output.pci-0000_2d_00.4.analog-stereo
 fi
-. "$HOME/.cargo/env"
+[[ -x $HOME/.cargo/env ]] && ."${HOME}/.cargo/env"
