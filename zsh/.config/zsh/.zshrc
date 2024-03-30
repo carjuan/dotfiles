@@ -35,7 +35,7 @@ source "$ZDOTDIR/init/loader"
 
 is_zsh_history
 
-# Source normal files 
+# Source core shell files 
 zsh_source_file "zsh-exports"
 zsh_source_file "zsh-exec"
 zsh_source_file "zsh-aliases"
@@ -53,7 +53,6 @@ zsh_source_file "util/instructor-git-token-update"
 zsh_install_plugin "zsh-users/zsh-autosuggestions"
 zsh_install_plugin "zsh-users/zsh-syntax-highlighting"
 zsh_install_plugin "hlissner/zsh-autopair"
-zsh_install_plugin "rupa/z"
 # For more plugins: https://github.com/unixorn/awesome-zsh-plugins
 #
 
@@ -89,5 +88,7 @@ bindkey '^e' edit-command-line
 # NVM - Node Version Manager
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+# zoxide - a smarter cd command
+eval "$(zoxide init zsh)"
 
 alias luamake=/home/juanse/lua-language-server/3rd/luamake/luamake
