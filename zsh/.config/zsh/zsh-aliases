@@ -7,9 +7,9 @@ alias zsh-update-plugins="find "$ZDOTDIR/plugins" -type d -exec test -e '{}/.git
 # ls color output -G for osx and --color=auto for linux
 ls --color=auto &> /dev/null && alias ll='ls --color=auto -hAlt' || alias ll='ls -GhAlt'
 
-alias ls='exa --group-directories-first'
-alias ll='exa -l --icons --no-user --group-directories-first --time-style long-iso'
-alias la='exa -la --icons --no-user --group-directories-first --time-style long-iso'
+alias ls='eza --group-directories-first'
+alias ll='eza -l --icons --no-user --group-directories-first --time-style long-iso'
+alias la='eza -la --icons --no-user --group-directories-first --time-style long-iso'
 
 # confirm before overwriting sm
 alias rm='rm -i'
