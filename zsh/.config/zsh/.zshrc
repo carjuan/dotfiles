@@ -53,6 +53,7 @@ zsh_source_file "util/instructor-git-token-update"
 zsh_install_plugin "zsh-users/zsh-autosuggestions"
 zsh_install_plugin "zsh-users/zsh-syntax-highlighting"
 zsh_install_plugin "hlissner/zsh-autopair"
+zsh_install_plugin "lukechilds/zsh-nvm" # Nice wrapper for installing and managing all NVM
 # For more plugins: https://github.com/unixorn/awesome-zsh-plugins
 #
 
@@ -85,9 +86,6 @@ bindkey '^e' edit-command-line
 # Create a pane horizontally, $HOME directory, 50% width of current pane
 # $ tmux split -window -h -c  $HOME -p 50 vim
 
-# NVM - Node Version Manager
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 # zoxide - a smarter cd command
 eval "$(zoxide init zsh)"
 
