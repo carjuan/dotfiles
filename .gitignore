@@ -13,4 +13,7 @@ configstore
 gh
 neofetch
 ROADMAP.md
-
+Brewfile.lock.json
+TODO.md
+font/cache
+dotfiles.drawio
