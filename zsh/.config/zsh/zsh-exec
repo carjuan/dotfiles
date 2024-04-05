@@ -20,14 +20,6 @@ case "${UNAME_OUT}" in
         nvidia-settings -a '[gpu:0]/GPUFanControlState=1' &> /dev/null
         nvidia-settings -a '[fan]/GPUTargetFanSpeed=50' &> /dev/null
 
-        if pgrep tmux &>/dev/null && ! pgrep dropbox &>/dev/null;
-        then
-          tmux rename-window running-dropbox &>/dev/null
-          dropbox start &>/dev/null
-        else
-          echo -e "No need to start dropbox" 
-        fi
-
         # Adds  brew /bin to path
         eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
