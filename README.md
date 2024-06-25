@@ -23,16 +23,32 @@ You can customize the list of fonts to be installed by modifying the
 see [installing fonts](#installing-fonts)
 
 > [!NOTE]
-> For your own customization, replace the following files/folders with your own:
-> `darwin/packages/Brewfile` (for macOS), `font/font_list`, `fzf/`,
-> `linux/packages/Brewfile`, `nvim/`, `packages/dot_node_global_packages`
-> (if using node and pnpm) `shellenv/.zshenv`, `tmux/`, `/zsh`. It should work just
-> fine, although some configurations may need to be adjusted.
+> For your own customization, replace the following files/folders with your own,
+> `darwin/packages/Brewfile` (for macOS), `font/font_list`,
+> `linux/packages/Brewfile`, `packages/.npm-global-packages`
+> (if using node and pnpm) `shellenv/.zshenv`.
+> This should work just fine, although some configurations may need to be adjusted.
 
 A key utility used in this setup is [`GNU Stow`](https://www.gnu.org/software/stow/),
 a symlink farm manager that greatly simplifies the management of configuration files
 across different systems. It allows you to organize files under one directory and
 then uses symbolic links to distribute them to their proper locations.
+
+> [!NOTE]
+> For `stow` to work as expected, replace the following folders with your own,
+> or remove them if not you do not need them.
+> **_following the exact STOW folder structure_**:
+> `fzf/.config/[your-own-fzf-folder]`, `nvim/.config/[your-own-nvim-folder]`,
+> `tmux/.config/[your-own-tmux-folder]`, `zsh/.config/[your-own-zsh-folder]`,
+> `linux/.config/[your-own-terminal-folder]`,
+> `linux/.config/[your-own-i3-folder]`, `darwin/.config/[your-own-terminal-folder]`.
+> The reason for replacing the folder after `/.config` is due to the way `stow` works.
+> `stow` operates by creating symlinks from the target directory
+> (usually your home directory) to the files in a package directory
+> (in this case, the directories listed above). The structure of the package
+> directory mirrors the structure of the target directory. So, when you
+> run `stow nvim` from `~/dotfiles`, it will create a symlink from `~/.config/nvim`
+> to `~/dotfiles/nvim/.config/nvim/`.
 
 The setup process is largely automated through shell scripts, making it easy to
 replicate the environment on multiple machines. The repository also includes
