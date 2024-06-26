@@ -2,16 +2,16 @@
 
 set -euo pipefail
 
-source ./util.sh
+source "${DOTFILES}/env/utils/notify.sh"
 
-ensure_dependency "git"
+notify "STEP" "Setting up Git"
 
 #Git config user name
-echo "Please enter your FULL NAME for Git Configuration"
+notify "INFO" "Please enter your FULL NAME for Git Configuration"
 read git_user_name
 
 #Git config email
-echo "Please enter your EMAIL for Git Configuration"
+notify "INFO" "Please enter your EMAIL for Git Configuration"
 read git_user_email
 
 # Setup git credentials

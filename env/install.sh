@@ -2,18 +2,20 @@
 
 set -euo pipefail
 
+source "${DOTFILES}/env/utils/ensure_installed.sh"
+source "${DOTFILES}/env/utils/notify.sh"
+source "${DOTFILES}/env/setup_env/brew.sh"
+source "${DOTFILES}/env/setup_env/fonts.sh"
+source "${DOTFILES}/env/setup_env/stow.sh"
+
 if [[ -z "${DOTFILES:-}" ]]; then
 	export DOTFILES="${HOME}/dotfiles"
 fi
 
-source "${DOTFILES}/env/util.sh"
-
 # Fail fast if HOME is unset
 if [[ -z "${HOME:-}" ]]; then
-	print_error "\$HOME must be set to run $0"
+	notify "ERROR" "\$HOME must be set to run $0"
 fi
-
-ensure_dependency "curl" "fc-cache" "cp" "cd"
 
 # Enable a simple vim config in case 'neovim' is not setup
 VIMRC="vimrc"
@@ -23,36 +25,55 @@ if [[ -s ${VIMRC_FILE} ]]; then
 	cp "${VIMRC_FILE}" "${HOME}"
 fi
 
-# Are we in the expected OS
-OS=$(uname -s | tr '[:upper:]' '[:lower:]')
+DOT_OS=$(uname | tr "[:upper:]" "[:lower:]")
+export DOT_OS
+DOT_BREWFILE_PATH="${DOTFILES}/${DOT_OS}/packages/Brewfile"
+DOT_PACKAGE_MANAGER="brew"
 
-export DOT_BREWFILE="${DOTFILES}/${OS}/packages/Brewfile"
-export DOT_OS=${OS}
+dot_brew_install_path=""
+dot_os_system_fonts_path=""
+dot_install_script_dependencies=""
 
-case "${OS}" in
+case "${DOT_OS}" in
 linux)
-	export DOT_OS_SYSTEM_FONTS_PATH="${HOME}/.local/share/fonts"
+	dot_brew_install_path="/home/linuxbrew/.linuxbrew/bin/brew"
+	dot_os_system_fonts_path="${HOME}/.local/share/fonts"
+
+	install_dev_packages "${DOT_PACKAGE_MANAGER}" "${dot_brew_install_path}" "${DOT_BREWFILE_PATH}"
+
+	dot_install_script_dependencies=("curl" "git" "mkdir" "unzip" "rm" "xargs" "fc-cache" "cp" "pnpm" "node" "npm" "stow")
+
+	ensure_installed "${dot_install_script_dependencies[@]}"
+
+	stow_env "${DOT_OS}"
+
+	install_system_fonts "${DOT_OS}" "${dot_os_system_fonts_path}"
 	;;
 
 darwin)
-	export DOT_OS_SYSTEM_FONTS_PATH="${HOME}/Library/Fonts"
-	./macos.sh
+	dot_brew_install_path="/usr/local/bin/brew"
+	dot_os_system_fonts_path="${HOME}/Library/Fonts"
+
+	install_dev_packages "${DOT_PACKAGE_MANAGER}" "${dot_brew_install_path}" "${DOT_BREWFILE_PATH}"
+
+	dot_install_script_dependencies=("curl" "git" "mkdir" "unzip" "cp" "rm" "xargs" "pnpm" "node" "npm" "stow")
+
+	ensure_installed "${dot_install_script_dependencies[@]}"
+
+	stow_env "${DOT_OS}"
+
+	install_system_fonts "${DOT_OS}" "${dot_os_system_fonts_path}"
 	;;
 *)
-	print_error "Current OS is not supported. Aborting this script installation"
+	notify "ERROR" "Current OS is not supported. Aborting this script installation"
 	;;
 esac
 
-./git.sh
+DOT_ENV_SETUP_SCRIPTS_PATH="${DOTFILES}/env/setup_env"
+DOT_ENV_SETUP_SCRIPTS=("git" "pnpm" "tmux")
 
-./brew.sh
+for script in "${DOT_ENV_SETUP_SCRIPTS[@]}"; do
+	"${DOT_ENV_SETUP_SCRIPTS_PATH}/${script}.sh"
+done
 
-./vim_as_nvim.sh
-
-./stow.sh
-
-./pnpm.sh
-
-./fonts.sh
-
-[[ -e "${HOME}"/.zshrc ]] && rm -f "${HOME}"/.zshrc || exit 0
+notify "SUCCESS" "Installation succeded! Restart shell session to load your new shell configs!"
