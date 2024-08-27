@@ -39,16 +39,9 @@ unfocused_hollow = true
 blinking = "Never"
 
 [font]
-size = 16.0
-
-[font.bold]
-family = "InconsolataGo Nerd Font Mono"
-
-[font.bold_italic]
-family = "Hack Nerd Font"
-
-[font.normal]
-family = "InconsolataGo Nerd Font"
+size = 22
+normal = {family = "InconsolataGo Nerd Font", style = "Bold"}
+builtin_box_drawing = true
 
 [font.offset]
 x = 1
