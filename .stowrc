@@ -1,1 +1,2 @@
 --ignore=packages
+--ignore=.DS_Store
