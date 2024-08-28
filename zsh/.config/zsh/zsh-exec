@@ -1,45 +1,50 @@
 #!/usr/bin/env zsh
 
-UNAME_OUT="$(uname -s)"
-PNPM_HOME=""
+OS="$(uname)"
 
-case "${UNAME_OUT}" in
-    Linux*)
-        # pnpm
-        export PNPM_HOME="/home/juanse/.local/share/pnpm"
-        # pnpm end
+case "${OS}" in
+    Linux)
+      # Sets fiio and HD600S2, if available, as default audio output. See zsh-aliases for `out-fiio`
+	      out-fiio &>/dev/null
 
-        if command -v i3 &>/dev/null;
-        then
-          dropbox start &>/dev/null
-        fi
+        BREW_BIN_PATH='/home/linuxbrew/.linuxbrew/bin'
+        case ":$PATH:" in
+          *":$BREW_BIN_PATH:"*) ;;
+          *) 
+            #Sets brew binary in $PATH
+            eval "$($BREW_BIN_PATH/brew shellenv)"
+            ;;
+        esac
+      ;;
+    Darwin)
+        # If on Apple Silicon, then path must be /opt/homebrew/bin/brew
 
-        export MANPAGER='vim +Man!'
-        export PATH=$PATH:/opt/mssql/bin
-        export PATH=$PATH:/opt/mssql-tools/bin
-        nvidia-settings -a '[gpu:0]/GPUFanControlState=1' &> /dev/null
-        nvidia-settings -a '[fan]/GPUTargetFanSpeed=50' &> /dev/null
+        BREW_BIN_PATH='/usr/local/bin'
+        case ":$PATH:" in
+          *":$BREW_BIN_PATH:"*) ;;
+          *) 
+            eval "$($BREW_BIN_PATH/brew shellenv)"
+            ;;
+        esac
 
-        # Adds  brew /bin to path
-        eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+        alias firefox="/Applications/Firefox\ Developer\ Edition.app/Contents/MacOS/firefox"
+      ;;
 
-        export PATH=$HOME/.local/bin:$PATH
-        # NVM - Node Version Manager
-        
-
-        #export NVM_DIR="$HOME/.nvm"
-        #[ -s "/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh" ] && \. "/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh"  # This loads nvm
-        #[ -s "/home/linuxbrew/.linuxbrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/home/linuxbrew/.linuxbrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
-
-        #export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-        #[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-        ;;
-
-    Darwin*)
-        # pnpm
-        export PNPM_HOME="/Users/juanse/.local/share/pnpm"
-        # pnpm end
 esac
 
-export PATH="$PNPM_HOME:$PATH"
+# run file synching software we are not on WM i3
+if ! pgrep i3 &>/dev/null; then
+  nohup syncthing >/dev/null 2>&1 &
+  disown
+  echo "Running syncthing in the background"
+fi
 
+# must be loaded after initializing brew shellenv
+# zoxide - a smarter cd command
+eval "$(zoxide init zsh)"
+
+[[ -x $HOME/.cargo/env ]] && ."${HOME}/.cargo/env"
+
+# NVM - Node Version Manager
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
