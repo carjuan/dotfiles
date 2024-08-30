@@ -33,3 +33,6 @@ i3-msg "workspace 3; exec --no-startup-id firefox https://notion.so https://cale
 
 # executes stretchly in bg
 i3-msg "workspace 3; exec stretchly"
+
+# executes file synching - syncthing in bg
+i3-msg "workspace 3; exec syncthing"

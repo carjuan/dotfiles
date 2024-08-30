@@ -229,4 +229,4 @@ bar {
 exec --no-startup-id i3-config-wizard
 
 # Auto start programs
-exec --no-startup-id ~/.config/i3/util/autostart-clients.sh
+exec --no-startup-id ~/.config/i3/util/autostart-apps.sh
