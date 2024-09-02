@@ -16,7 +16,6 @@ require('lazy').setup({
       opts = {
         colorscheme = function()
           vim.cmd('colorscheme catppuccin')
-          vim.opt.background = 'dark'
         end,
       },
     },
