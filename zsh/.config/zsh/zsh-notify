@@ -1,0 +1,107 @@
+autoload -U colors && colors
+
+function notify() {
+  local NOTIFIER="${1}"
+  local NOTIFICATION_MESSAGE="${2}"
+  print -P "\n%B%F{black}%K{red}${NOTIFIER}: ${NOTIFICATION_MESSAGE}%k%f%b"
+}
+
+function print_installation_instruction() {
+  cat <<EOF
+${1}
+EOF
+}
+
+# TMUX PLUGINS
+TMUX_PLUGINS_INSTRUCTIONS='
+  1. Make sure to install tmux plugins by pressing `Prefix` + `I`.
+  2. Then reload tmux by pressing `Prefix` + `r`.
+'
+
+
+# exclude '/tpm' as plugin count
+TMUX_NUMBER_OF_PLUGINS_INSTALLED="$(ls $HOME/.tmux/plugins | grep -v tpm | wc -l)"
+TMUX_NUMBER_OF_DEFAULT_PLUGINS_INSTALLATION_FOLDER=0
+if pgrep tmux &>/dev/null && [[ ! ${TMUX_NUMBER_OF_PLUGINS_INSTALLED} -gt ${TMUX_NUMBER_OF_DEFAULT_PLUGINS_INSTALLATION_FOLDER} ]]; then
+  notify "Tmux" "plugins are not installed or missing."
+  print_installation_instruction "${TMUX_PLUGINS_INSTRUCTIONS}"
+fi
+
+# MISC TOOLS
+OBSIDIAN_INSTRUCTIONS='
+1. Get appimage from https://obsidian.md/
+2. Create folder /home/appimages if it is not already
+    sudo mkir /home/appimages
+3. Make sure appimages work and move app to /home/appimages
+    sudo apt install fuse libfuse2 -y && \
+    sudo mv ~/Downloads/Obsidian-<app-version>.AppImage /home/appimages
+4. Create sym link
+    sudo ln -s /home/appimages/Obsidian-<app-version>.AppImage /usr/local/bin/obsidian
+'
+
+RESPONSIVELY_INSTRUCTIONS='
+1. Download `appimage` from https://responsively.app/
+2. Create folder /home/appimages if it is not already
+    sudo mkir /home/appimages
+3. Make sure appimages work and move app to /home/appimages
+    sudo apt install fuse libfuse2 -y && \
+    sudo mv ~/Downloads/ResponsivelyApp-<app-version>.AppImage /home/appimages
+4. Create sym link
+    sudo ln -s /home/appimages/ResponsivelyApp-<app-version>.AppImage /usr/local/bin/responsively
+'
+
+i3_INSTRUCTIONS='
+1. Run the following:
+    # Verify if wmctrl is installed.
+    command -v wmctrl
+
+    # If not, run
+    brew install wmctrl || sudo apt install wmctrl
+
+    # Install i3
+    sudo apt install i3
+'
+
+POSTMAN='
+1. Go to https://www.postman.com/downloads/
+2. Get linux version
+3. tar xvzf PACKAGENAME.tar.gz -- extract
+4. sudo mv PACKAGENAME to /home/appimages
+6. navigate to /usr/local/bin/
+7. Run
+  sudo ln -s /home/appimages/Postman/Postman ./postman
+'
+
+function check_system_apps() {
+  local LINUX_APPS=("spotify" "flameshot" "obs" "obsidian" "responsively" "brave-browser" "firefox" "i3" "alacritty")
+
+  for app in "${LINUX_APPS[@]}"; do
+    if ! command -v "${app}" &>/dev/null; then
+      notify "${app}" "This app is NOT installed. See guide below:"
+      case ${app} in
+        spotify| flameshot| obs| brave-browser| firefox| alacritty)
+          echo "Instructions to install ${app} can be found: https://www.google.com/search?q=${app}+linux"
+        ;;
+        obsidian)
+          print_installation_instruction "${OBSIDIAN_INSTRUCTIONS}"
+        ;;
+        i3)
+          print_installation_instruction "${i3_INSTRUCTIONS}"
+        ;;
+        responsively)
+          print_installation_instruction "${RESPONSIVELY_INSTRUCTIONS}"
+        ;;
+      postman)
+        print_installation_instruction "${POSTMAN}"
+        ;;
+      *) 
+          notify "zsh-notify:" "no instructions were provided for this ${app} "
+        ;;
+      esac
+    fi
+  done
+}
+
+OS="$(uname)"
+
+[[ "${OS}" == "Linux" ]] && check_system_apps
