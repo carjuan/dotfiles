@@ -1,5 +1,90 @@
 #!usr/bin/env bash
 
+# SASS
+function sass-run() {
+
+# sass app/scss:dist/ --style=compressed --watch
+
+  local default_style="compressed"
+  local source_dir=${1}
+  local dist_dir=${2}
+
+  echo "Running sass as 'sass ${source_dir}:${dist_dir} --style=compressed --watch'"
+
+  echo "Check docs: https://sass-lang.com/documentation/cli/ruby-sass/"
+
+  if ! command -v sass &>/dev/null;then
+    echo "Command 'sass' not found"
+  else
+    sass "${source_dir}:${dist_dir}" --style=compressed --watch
+  fi
+  
+}
+
+# Tmux Layout
+function ide() {
+  tmux split-window -v
+  tmux resize-pane -t 1 -y 16%
+  tmux split-window -h
+  tmux split-window -h
+  tmux split-window -h
+  tmux resize-pane -t 1 -x 35%
+  tmux resize-pane -t 2 -x 35%
+  tmux resize-pane -t 3 -x 15%
+  tmux resize-pane -t 4 -x 15%
+  tmux select-pane -t 0
+}
+
+function copywdir() {
+  pwd | pbcopy
+  echo "cwd copied to clipboard"
+}
+
+# Cheat sheet
+# info http://cht.sh
+#alias cheat="curl cheat.sh/ "
+function cheat() {
+  local _search="$1"
+
+  curl cheat.sh/"${_search}"
+
+}
+
+function ts() {
+  local _session="$1"
+
+  tmux switch-client -t "${_session}"
+}
+
+function tka() {
+  tmux kill-pane -a -t 0
+}
+
+function tk() {
+  local _pane="$1"
+  tmux kill-pane -t "${_pane}"
+}
+
+# Find current dir
+function fcd() {
+  local _search_string="$1"
+  la | grep "${_search_string}"
+}
+
+# Find <word> in current files
+function ff(){
+  local _search_string="$1"
+  ll | grep "^-" | awk -F ' ' '{print $NF}' | xargs grep -n "${_search_string}"
+}
+
+function git_init_custom() {
+    git init "$@"
+    printf "Currently git user.name set as: [%s] \n" $(git config --get user.name)
+    printf "Currently git user.email set as: [%s] \n" $(git config --get user.email)
+    printf "if you do not want to commit as such author: [%s]\n" $(git config --get user.email)
+    printf "Consider changing --local user.name and --local user.email for this repo!!!\n"
+}
+
 # -0 Change xargs to expect NUL (``\0'') characters as separators, instead of spaces and newlines.  This is expected to be used in concert with the -print0 function in find(1).
 # -print0 this primary always evaluates to true.  It prints the pathname of the current file to standard output, followed by an ASCII NUL character (character code 0).
 alias zsh-update-plugins="find "$ZDOTDIR/plugins" -type d -exec test -e '{}/.git' ';' -print0 | xargs -I dirpath -0 git -C dirpath pull -q"
@@ -8,8 +93,8 @@ alias zsh-update-plugins="find "$ZDOTDIR/plugins" -type d -exec test -e '{}/.git
 ls --color=auto &> /dev/null && alias ll='ls --color=auto -hAlt' || alias ll='ls -GhAlt'
 
 alias ls='eza --group-directories-first'
-alias ll='eza -l --icons --no-user --group-directories-first --time-style long-iso'
-alias la='eza -la --icons --no-user --group-directories-first --time-style long-iso'
+alias ll='eza -l --icons --group-directories-first --time-style long-iso'
+alias la='eza -la -F=always --icons --group-directories-first --time-style long-iso'
 
 # confirm before overwriting sm
 alias rm='rm -i'
@@ -32,33 +117,7 @@ alias pscpu='ps auxf | sort -nr -k 3 | head -5'
 alias gital='cat $ZDOTDIR/zsh-aliases | tail -21'
 
 # Start Tmux with $XDG_CONFIG_HOME/tmux/*.tmux.conf
-alias tmux="tmux -f $XDG_CONFIG_HOME/tmux/.tmux.conf"
-
-#Check both mac and Linux
-platform=$(uname)
-case "$platform" in
-    "Darwin" )
-        {
-            CURRENT_OS="OSX"
-        } ;;
-    "Linux" )
-        {
-            CURRENT_OS="LINUX"
-        } ;;
-    *)
-        {
-            echo "Unsupported OS, for setting alias=firefox"
-        } ;;
-esac
-
-
-if [[ "$CURRENT_OS" == "OSX" ]];
-then
-    alias firefox="/Applications/Firefox\ Developer\ Edition.app/Contents/MacOS/firefox"
-elif [[ "$CURRENT_OS" == "LINUX" ]];
-then
-    alias firefox="firefox"
-fi
+alias tm="tmux -f $XDG_CONFIG_HOME/tmux/.tmux.conf"
 
 # browser-sync
 alias bss="browser-sync start --server --files '**/*.css, **/*.html, **/*.js, !node_modules/**/*' --directory --port 7777 --browser firefox"
@@ -68,6 +127,8 @@ alias lg="lazygit"
 
 #pnpm
 alias pn="pnpm"
+
+alias luamake=/home/juanse/lua-language-server/3rd/luamake/luamake
 
 # ----------------------
 # Git Aliases
@@ -93,6 +154,7 @@ alias grv='git remote -v'
 
 # ########## LINUX ONLY ALIAS ###############
 # Change default audio output
-# alsa_output.usb-SteelSeries_Arctis_Nova_Pro_Wireless-00.analog-stereo
-alias output-steel='alsa_output.usb-SteelSeries_Arctis_Nova_Pro_Wireless-00.analog-stereo'
-alias output-speakers='pactl set-default-sink alsa_output.pci-0000_2d_00.4.analog-stereo'
+# List avaialble devices running 'pactl list | grep "Monitor of Sink"'.
+alias out-speakers='pactl set-default-sink alsa_output.pci-0000_2d_00.4.analog-stereo'
+alias out-fiio='pactl set-default-sink alsa_output.usb-GuangZhou_FiiO_Electronics_Co._Ltd_FiiO_K7-00.analog-stereo'
+alias out-nova='pactl set-default-sink alsa_output.usb-SteelSeries_Arctis_Nova_Pro_Wireless-00.analog-stereo'

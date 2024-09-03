@@ -1,4 +1,0 @@
-function copywdir() {
-  pwd | pbcopy
-  echo "cwd copied to clipboard"
-}
