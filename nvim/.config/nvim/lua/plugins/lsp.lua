@@ -43,6 +43,10 @@ return {
         'css-lsp',
         'bash-language-server',
         'eslint_d',
+        'emmet-language-server',
+        'stylua',
+        'shfmt',
+        'prettierd',
       })
     end,
   },
