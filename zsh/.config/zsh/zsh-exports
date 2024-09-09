@@ -10,20 +10,8 @@ export TERMINAL="alacritty"
 export BROWSER="firefox"
 export DOTNET_CLI_TELEMETRY_OPTOUT=true 
 
-# XDF CONIG
-export XDG_CONFIG_HOME=$HOME/.config
-export XDG_CACHE_HOME=$HOME/.cache
-export XDG_DATA_HOME=$HOME/.local/share
-
-# zsh config dir
-export ZDOTDIR=$HOME/.config/zsh
-
 # DOTFILES
 export DOTFILES=$HOME/dotfiles
-
-HISTFILE="$XDG_DATA_HOME"/zsh/history/.zsh_history
-HISTSIZE=1000000
-SAVEHIST=1000000
 
 #FZF
 export FZF_DEFAULT_OPTS='
