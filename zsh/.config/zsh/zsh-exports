@@ -22,7 +22,29 @@ export FZF_DEFAULT_OPTS='
 '
 
 # Go
-export PATH="${HOME}/go/bin:$PATH"
+# Anonymous functions in zsh Work for scoping only. It will be thrown away as soon as it finishes execution.
+function() {
+  local OS=$(uname)
+  if [[ ${OS} == "Linux" ]]; then
+    local GO_BIN="/usr/local/go/bin"
+    case ":$PATH:" in
+      *":$GO_BIN:"*) ;;
+      *) 
+        export PATH="${GO_BIN}:${PATH}" 
+        ;;
+    esac
+  fi
+
+  # Default globally installed packages path
+  local GOPATH="${HOME}/go/bin"
+  case ":$PATH:" in
+    *":$GOPATH:"*) ;;
+    *) 
+      export PATH="${GOPATH}:${PATH}" 
+      ;;
+  esac
+}
+
 
 # Alacritty
 export PKG_CONFIG_PATH=/usr/lib/x86_64-linux-gnu/pkgconfig
