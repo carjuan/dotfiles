@@ -39,7 +39,7 @@ export STARSHIP_CONFIG=$XDG_CONFIG_HOME/starship/config.toml
 # tmux-256color
 # xterm-256color 
 # screen-256color
-# NOTE: xterm-256color can screw TMUX {ls -G} 
+# NOTE: xterm-256color can screw TMUX {ls -G}
 export TERM=xterm-256color
 
 export MANWIDTH=999
