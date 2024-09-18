@@ -191,6 +191,14 @@ return {
             },
           },
         },
+
+        live_grep = {
+          mappings = {
+            ['i'] = {
+              [';q'] = actions.send_to_qflist,
+            },
+          },
+        },
       }
       opts.extensions = {
         file_browser = {
