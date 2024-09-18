@@ -37,25 +37,20 @@ is_zsh_history
 
 # Source core shell files 
 zsh_source_file "zsh-exports"
-zsh_source_file "zsh-exec"
 zsh_source_file "zsh-aliases"
+zsh_source_file "zsh-exec"
 zsh_source_file "zsh-prompt"
 zsh_source_file "zsh-vim-mode"
-zsh_source_file "zsh-function-aliases"
 zsh_source_file "fzf-env/fzf"
 zsh_source_file "fzf-env/theme"
-zsh_source_file "util/copy-working-dir"
 zsh_source_file "util/webdev"
-zsh_source_file "util/tmux"
 zsh_source_file "util/instructor-git-token-update"
+zsh_source_file "zsh-notify"
 
 # Plugin Manager
 zsh_install_plugin "zsh-users/zsh-autosuggestions"
 zsh_install_plugin "zsh-users/zsh-syntax-highlighting"
 zsh_install_plugin "hlissner/zsh-autopair"
-zsh_install_plugin "lukechilds/zsh-nvm" # Nice wrapper for installing and managing all NVM
-# For more plugins: https://github.com/unixorn/awesome-zsh-plugins
-#
 
 
 #### Key-bindings override
