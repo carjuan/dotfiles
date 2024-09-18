@@ -8,6 +8,8 @@ return {
   -- disables markdown highlight
   { 'lukas-reineke/headlines.nvim', enabled = false },
 
+  { 'rcarriga/nvim-notify', enabled = false },
+
   -- disables plugin that completely replaces the UI for messages, cmdline and the popupmenu
-  -- { "folke/noice.nvim", enabled = false },
+  { 'folke/noice.nvim', enabled = false },
 }
