@@ -15,7 +15,7 @@ require('lazy').setup({
       import = 'lazyvim.plugins',
       opts = {
         colorscheme = function()
-          vim.cmd('colorscheme catppuccin')
+          vim.cmd('colorscheme kanagawa')
         end,
       },
     },
