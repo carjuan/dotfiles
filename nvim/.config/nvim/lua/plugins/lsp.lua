@@ -75,7 +75,6 @@ return {
         'tailwindcss-language-server',
         'css-lsp',
         'bash-language-server',
-        'eslint_d',
         'emmet-language-server',
         'stylua',
         'shfmt',
