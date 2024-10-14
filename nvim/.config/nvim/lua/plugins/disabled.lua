@@ -12,4 +12,7 @@ return {
 
   -- disables plugin that completely replaces the UI for messages, cmdline and the popupmenu
   { 'folke/noice.nvim', enabled = false },
+
+  -- disable fancy tablines line
+  { 'akinsho/bufferline.nvim', enabled = false },
 }
