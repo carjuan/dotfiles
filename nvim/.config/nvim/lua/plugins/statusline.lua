@@ -4,7 +4,12 @@ return {
     'nvim-lualine/lualine.nvim',
     opts = {
       options = {
-        theme = 'horizon',
+        theme = 'kanagawa',
+        section_separators = { '|', '|' },
+        component_separators = { '', '' },
+      },
+      sections = {
+        lualine_z = { 'searchcount' },
       },
     },
   },
