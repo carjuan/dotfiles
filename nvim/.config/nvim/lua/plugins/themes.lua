@@ -2,14 +2,14 @@ return {
   -- add gruvbox.nvim
   {
     'ellisonleao/gruvbox.nvim',
-    opts = { transparent_mode = true },
+    opts = { transparent_mode = false },
   },
 
   -- add kanagawa
   {
     'rebelot/kanagawa.nvim',
     opts = {
-      transparent = true,
+      transparent = false,
       theme = 'wave',
       background = {
         dark = 'dragon',
@@ -66,7 +66,7 @@ return {
       require('catppuccin').setup({
         flavour = 'mocha', -- latte, frappe, macchiato, mocha
         term_colors = true,
-        transparent_background = true,
+        transparent_background = false,
         no_italic = false,
         no_bold = false,
         styles = {
