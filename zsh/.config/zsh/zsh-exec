@@ -19,7 +19,7 @@ case "${OS}" in
     Darwin)
         # If on Apple Silicon, then path must be /opt/homebrew/bin/brew
 
-        BREW_BIN_PATH='/usr/local/bin'
+        BREW_BIN_PATH='/opt/homebrew/bin'
         case ":$PATH:" in
           *":$BREW_BIN_PATH:"*) ;;
           *) 
