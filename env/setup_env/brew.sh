@@ -5,7 +5,6 @@ set -euo pipefail
 source "${DOTFILES}/env/utils/notify.sh"
 
 function install_brew() {
-	eval "$(${INSTALL_PATH} shellenv)" && echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >>~/.zshrc
   local OS="${DOT_OS:-$(uname)}"
   local INSTALL_PATH="${1}"
   if ! /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"; then
@@ -20,6 +19,7 @@ function install_brew() {
   esac
 
   # Make sure brew is active in current shell session
+  eval "$(${INSTALL_PATH}/brew shellenv)" && echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >>~/.zshrc
 }
 
 function is_brew_installed() {
