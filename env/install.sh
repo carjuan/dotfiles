@@ -51,7 +51,7 @@ linux)
   ;;
 
 darwin)
-	dot_brew_install_path="/usr/local/bin/brew"
+  dot_brew_install_path="/opt/homebrew/bin"
   dot_os_system_fonts_path="${HOME}/Library/Fonts"
 
   install_dev_packages "${DOT_PACKAGE_MANAGER}" "${dot_brew_install_path}" "${DOT_BREWFILE_PATH}"
