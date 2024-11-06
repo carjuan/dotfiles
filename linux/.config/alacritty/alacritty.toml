@@ -40,7 +40,7 @@ blinking = "Never"
 
 [font]
 size = 22
-normal = {family = "InconsolataGo Nerd Font", style = "Bold"}
+normal = {family = "FiraCode Nerd Font Propo", style = "Bold"}
 builtin_box_drawing = true
 
 [font.offset]
