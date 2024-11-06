@@ -73,7 +73,7 @@ POSTMAN='
 '
 
 function check_system_apps() {
-  local LINUX_APPS=("spotify" "flameshot" "obs" "obsidian" "responsively" "brave-browser" "firefox" "i3" "alacritty")
+  local LINUX_APPS=("spotify" "flameshot" "obs" "obsidian" "responsively" "brave-browser" "firefox" "i3" "alacritty" "wezterm")
 
   for app in "${LINUX_APPS[@]}"; do
     if ! command -v "${app}" &>/dev/null; then
