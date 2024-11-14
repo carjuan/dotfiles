@@ -15,4 +15,14 @@ return {
 
   -- disable fancy tablines line
   { 'akinsho/bufferline.nvim', enabled = false },
+
+  -- Snacks notifier
+  {
+    'folke/snacks.nvim',
+    opts = {
+      notifier = {
+        enabled = false,
+      },
+    },
+  },
 }
