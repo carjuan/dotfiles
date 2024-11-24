@@ -5,6 +5,7 @@ zsh/.config/zsh/.zcompdump
 .zsh_sessions
 zsh/plugins
 zsh/.zcompdump
+.zcompcache/
 terminfo
 tmux/plugins
 lazy-lock.json
