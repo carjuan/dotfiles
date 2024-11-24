@@ -79,25 +79,4 @@ return {
       })
     end,
   },
-
-  -- Logo dashboard.nvim
-  -- Site: https://www.patorjk.com/software/taag/#p=display&f=ANSI%20Shadow&t=Type%20Something%20
-  {
-    'nvimdev/dashboard-nvim',
-    event = 'VimEnter',
-    opts = function(_, opts)
-      local logo = [[
-     ██╗███████╗██╗  ██╗
-     ██║██╔════╝╚██╗██╔╝
-     ██║███████╗ ╚███╔╝ 
-██   ██║╚════██║ ██╔██╗ 
-╚█████╔╝███████║██╔╝ ██╗
- ╚════╝ ╚══════╝╚═╝  ╚═╝
-                        
-      ]]
-
-      logo = string.rep('\n', 8) .. logo .. '\n\n'
-      opts.config.header = vim.split(logo, '\n')
-    end,
-  },
 }

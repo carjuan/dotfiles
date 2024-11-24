@@ -16,6 +16,8 @@ return {
   -- disable fancy tablines line
   { 'akinsho/bufferline.nvim', enabled = false },
 
+  { 'folke/snacks.nvim', opts = { dashboard = { enabled = false } } },
+
   -- Snacks notifier
   {
     'folke/snacks.nvim',
