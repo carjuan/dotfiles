@@ -57,8 +57,5 @@ return {
 	-- Clipboard settings
 	enable_csi_u_key_encoding = true, -- Similar behavior for copying text to clipboard
 
-	-- Window settings
-	window_decorations = "NONE",
 	enable_tab_bar = false,
-	--window_title = "Alacritty",
 }
