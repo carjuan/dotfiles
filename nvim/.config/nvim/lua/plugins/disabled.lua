@@ -1,3 +1,5 @@
+vim.g.snacks_animate = false
+
 return {
   -- disable flash.nvim - <S> search
   { 'folke/flash.nvim', enabled = false },
