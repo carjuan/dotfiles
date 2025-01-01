@@ -179,24 +179,24 @@ export DOTFILES="${DOTFILES:-${HOME}/dotfiles}" && [[ -x "${DOTFILES}/env/instal
 ### Installing fonts
 
 1. Navigate to [nerd-font](https://www.nerdfonts.com/font-downloads) and choose a font
-    of your liking
+   of your liking
 
 > [!NOTE]
 > You can preview any fonts in [programming-fonts](https://www.programmingfonts.org)
 
 2. Once you have selected a font, make sure it is downloadable at
-    [nerd-fonts-releases](https://github.com/ryanoasis/nerd-fonts/releases)
+   [nerd-fonts-releases](https://github.com/ryanoasis/nerd-fonts/releases)
 
 3. Add `your new font` to the `fclist` by doing **_one_** of the following:
 
-    ```bash
-    # If vim is available as a text editor or use open the file in your favorite text editor
-    cd "${DOTFILES}" && vim font/fclist
-    ```
+   ```bash
+   # If vim is available as a text editor or use open the file in your favorite text editor
+   cd "${DOTFILES}" && vim font/fclist
+   ```
 
-    ```bash
-    echo "myFontName" >> "${DOTFILES}/font/fclist"
-    ```
+   ```bash
+   echo "myFontName" >> "${DOTFILES}/font/fclist"
+   ```
 
 ## Optional
 
