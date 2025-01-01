@@ -198,6 +198,21 @@ export DOTFILES="${DOTFILES:-${HOME}/dotfiles}" && [[ -x "${DOTFILES}/env/instal
    echo "myFontName" >> "${DOTFILES}/font/fclist"
    ```
 
+### Startup Services
+
+Use `brew` to list available services for running at startup
+
+```bash
+brew services
+```
+
+Start one
+
+```bash
+brew services start sketchybar
+brew services start syncthing
+```
+
 ## Optional
 
 ### Setup `vim` as `nvim`
