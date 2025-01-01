@@ -146,7 +146,7 @@ export XDG_CONFIG_HOME=$HOME/.config && \
 ### `ssh`
 
 > [!NOTE]
-> For up-to-date instructions, refer to the official [Github Docs](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
+> For up-to-date instructions, refer to the official [Github Docs](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account) and [Github Docs addding ssh to Gtihub](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
 
 ```zsh
 # Generates a new ssh key
