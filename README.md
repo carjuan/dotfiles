@@ -145,6 +145,9 @@ export XDG_CONFIG_HOME=$HOME/.config && \
 
 ### `ssh`
 
+> [!NOTE]
+> For up-to-date instructions, refer to the official [Github Docs](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
+
 ```zsh
 # Generates a new ssh key
 ssh-keygen -t ed25519 -C "your_email@example.com"
@@ -175,16 +178,16 @@ export DOTFILES="${DOTFILES:-${HOME}/dotfiles}" && [[ -x "${DOTFILES}/env/instal
 
 ### Installing fonts
 
-1.  Navigate to [nerd-font](https://www.nerdfonts.com/font-downloads) and choose a font
+1. Navigate to [nerd-font](https://www.nerdfonts.com/font-downloads) and choose a font
     of your liking
 
 > [!NOTE]
 > You can preview any fonts in [programming-fonts](https://www.programmingfonts.org)
 
-2.  Once you have selected a font, make sure it is downloadable at
+2. Once you have selected a font, make sure it is downloadable at
     [nerd-fonts-releases](https://github.com/ryanoasis/nerd-fonts/releases)
 
-3.  Add `your new font` to the `fclist` by doing **_one_** of the following:
+3. Add `your new font` to the `fclist` by doing **_one_** of the following:
 
     ```bash
     # If vim is available as a text editor or use open the file in your favorite text editor
