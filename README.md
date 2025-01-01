@@ -200,7 +200,7 @@ export DOTFILES="${DOTFILES:-${HOME}/dotfiles}" && [[ -x "${DOTFILES}/env/instal
 
 ## Optional
 
-#### Setup `vim` as `nvim`
+### Setup `vim` as `nvim`
 
 ```bash
 # Set vim as nvim
