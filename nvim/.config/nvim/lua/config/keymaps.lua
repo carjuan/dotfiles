@@ -23,3 +23,6 @@ setkey('n', '<s-tab>', ':tabprev<Return>', opts)
 --Inc rename
 --LSP Wrapper for incremental rename
 setkey('n', '<leader>rn', ':IncRename ')
+
+-- FZF
+vim.keymap.set('n', ';f', require('fzf-lua').files, { desc = 'Fzf Files' })
