@@ -1,4 +1,3 @@
-live_config_reload = true
 
 [colors.bright]
 black = "#555555"
@@ -60,3 +59,6 @@ save_to_clipboard = true
 decorations = "none"
 dynamic_title = true
 title = "Alacritty"
+
+[general]
+live_config_reload = true
