@@ -5,11 +5,11 @@ HDMI_OUTPUT=$(xrandr | awk '/^HDMI-0 connected/{print $1}')
 DP2_OUTPUT=$(xrandr | awk '/^DP-2 connected/{print $1}')
 DP4_OUTPUT=$(xrandr | awk '/^DP-4 connected/{print $1}')
 
-BROWSER="firefox-devedition"
+BROWSER_TO_OPEN="firefox-devedition"
 
 # open browser in workspace 1 on hdmi-0
 i3-msg "workspace 1; move workspace to output $HDMI_OUTPUT; layout stacking; exec --no-startup-id wezterm"
-i3-msg "workspace 1; exec --no-startup-id $BROWSER https://chat.openai.com/"
+i3-msg "workspace 1; exec --no-startup-id $BROWSER_TO_OPEN https://chat.openai.com/"
 
 # Loop until the browser window with "chat" in its title is found and store its window ID in CHAT_OPEN_BROWSER_ID
 # "Chat will be the name of the window when opened a brand new tab in chat.openai.com
@@ -25,13 +25,13 @@ i3-msg "[id=${CHAT_OPEN_BROWSER_ID}] floating enable; resize set 700 2000; move 
 sleep 2
 
 # open default development server
-i3-msg "workspace 2; move workspace to output $DP2_OUTPUT; exec --no-startup-id $BROWSER"
+i3-msg "workspace 2; move workspace to output $DP2_OUTPUT; exec --no-startup-id $BROWSER_TO_OPEN"
 
 sleep 3
 
 # open browser notion and google calendar
 i3-msg "workspace 3; move workspace to output $DP4_OUTPUT; layout stacking; exec --no-startup-id spotify"
-i3-msg "workspace 3; exec --no-startup-id $BROWSER https://notion.so https://calendar.google.com"
+i3-msg "workspace 3; exec --no-startup-id $BROWSER_TO_OPEN https://notion.so https://calendar.google.com"
 
 # executes stretchly in bg
 i3-msg "workspace 3; exec stretchly"
