@@ -1,7 +1,5 @@
 # Environment variables set everywhere
 export EDITOR="vim"
-export TERMINAL="alacritty"
-export BROWSER="brave"
 
 # XDG CONFIG
 export XDG_CONFIG_HOME=$HOME/.config
