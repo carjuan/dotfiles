@@ -126,9 +126,6 @@ alias gital='cat $ZDOTDIR/zsh-aliases | tail -21'
 # Start Tmux with $XDG_CONFIG_HOME/tmux/*.tmux.conf
 alias tm="tmux -f $XDG_CONFIG_HOME/tmux/.tmux.conf"
 
-# browser-sync
-alias bss="browser-sync start --server --files '**/*.css, **/*.html, **/*.js, !node_modules/**/*' --directory --port 7777 --browser firefox"
-
 # Lazygit
 alias lg="lazygit"
 
