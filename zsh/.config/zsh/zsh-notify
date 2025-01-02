@@ -39,6 +39,9 @@ OBSIDIAN_INSTRUCTIONS='
     sudo ln -s /home/appimages/Obsidian-<app-version>.AppImage /usr/local/bin/obsidian
 '
 
+# NOTE: Make sure to set executable permission on the appimage
+# chmod +x <appimage>
+
 RESPONSIVELY_INSTRUCTIONS='
 1. Download `appimage` from https://responsively.app/
 2. Create folder /home/appimages if it is not already
@@ -73,13 +76,13 @@ POSTMAN='
 '
 
 function check_system_apps() {
-  local LINUX_APPS=("spotify" "flameshot" "obs" "obsidian" "responsively" "brave-browser" "firefox" "i3" "alacritty" "wezterm")
+  local LINUX_APPS=("spotify" "flameshot" "obs" "obsidian" "responsively" "brave-browser" "firefox-devedition" "i3" "alacritty" "wezterm")
 
   for app in "${LINUX_APPS[@]}"; do
     if ! command -v "${app}" &>/dev/null; then
       notify "${app}" "This app is NOT installed. See guide below:"
       case ${app} in
-        spotify| flameshot| obs| brave-browser| firefox| alacritty)
+        spotify| flameshot| obs| brave-browser | firefox-devedition | alacritty)
           echo "Instructions to install ${app} can be found: https://www.google.com/search?q=${app}+linux"
         ;;
         obsidian)
