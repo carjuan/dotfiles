@@ -1,0 +1,9 @@
+Privacy Badger
+uBlock Origin
+Dark Reader
+Decentraleyes
+OneTab
+Vimium
+Web Developer Tools
+React Developer Tools
+ColorZilla
