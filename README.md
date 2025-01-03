@@ -200,7 +200,8 @@ export DOTFILES="${DOTFILES:-${HOME}/dotfiles}" && [[ -x "${DOTFILES}/env/instal
 
 ### Startup Services
 
-Use `brew` to list available services for running at startup
+I am using `aerospace` on macos to startup services instead. If you cannot execute
+and register a service, use `brew`.
 
 ```bash
 brew services
