@@ -42,7 +42,7 @@ function ide() {
   esac
 }
 
-function copywdir() {
+function ccwd() {
   pwd | pbcopy
   echo "cwd copied to clipboard"
 }
