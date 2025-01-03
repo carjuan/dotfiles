@@ -7,7 +7,6 @@ uglify-js
 eslint
 moment
 sass
-browser-sync
 eslint_d
 neovim
 tldr

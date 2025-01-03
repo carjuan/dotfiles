@@ -12,7 +12,7 @@ case ":$PATH:" in
 *) export PATH="${PNPM_HOME}:${PATH}" ;;
 esac
 
-NODE_GLOBAL_PACKAGES="${DOTFILES}/packages/dot_node_global_packages"
+NODE_GLOBAL_PACKAGES="${DOTFILES}/common/pnpm/packages"
 
 [[ -s "${NODE_GLOBAL_PACKAGES}" ]] && xargs pnpm install -g <"${NODE_GLOBAL_PACKAGES}" ||
-	notify "ERROR" "either file ${NODE_GLOBAL_PACKAGES} was not found or pnpm could not run properly."
+  notify "ERROR" "either file ${NODE_GLOBAL_PACKAGES} was not found or pnpm could not run properly."
