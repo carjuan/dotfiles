@@ -32,13 +32,6 @@ case "${OS}" in
 
 esac
 
-# run file synching software we are not on WM i3
-if ! pgrep i3 &>/dev/null; then
-  nohup syncthing >/dev/null 2>&1 &
-  disown
-  echo "Running syncthing in the background"
-fi
-
 # must be loaded after initializing brew shellenv
 # zoxide - a smarter cd command
 eval "$(zoxide init zsh)"
