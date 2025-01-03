@@ -200,17 +200,17 @@ export DOTFILES="${DOTFILES:-${HOME}/dotfiles}" && [[ -x "${DOTFILES}/env/instal
 
 ### Startup Services
 
-I am using `aerospace` on macos to startup services instead. If you cannot execute
-and register a service, use `brew`.
+I am using `aerospace` on `macos` to to run services after login. If `aerospace` is
+unable to do so, use `brew` instead.
 
 ```bash
-brew services
+# see available services
+brew services list
 ```
 
 Start one
 
 ```bash
-brew services start sketchybar
 brew services start syncthing
 ```
 
