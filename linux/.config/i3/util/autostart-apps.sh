@@ -2,7 +2,7 @@
 
 # get the names of the monitor outputs
 HDMI_OUTPUT=$(xrandr | awk '/^HDMI-0 connected/{print $1}')
-DP2_OUTPUT=$(xrandr | awk '/^DP-2 connected/{print $1}')
+DP2_OUTPUT=$(xrandr | awk '/^DP-0 connected/{print $1}')
 DP4_OUTPUT=$(xrandr | awk '/^DP-4 connected/{print $1}')
 
 BROWSER_TO_OPEN="firefox-devedition"
