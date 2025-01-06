@@ -7,3 +7,4 @@ Vimium
 Web Developer Tools
 React Developer Tools
 ColorZilla
+SVG gobbler
