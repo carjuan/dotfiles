@@ -36,7 +36,6 @@ source "$ZDOTDIR/init/loader"
 is_zsh_history
 
 # Source core shell files 
-zsh_source_file "zsh-exports"
 zsh_source_file "zsh-aliases"
 zsh_source_file "zsh-exec"
 zsh_source_file "zsh-prompt"
@@ -46,6 +45,7 @@ zsh_source_file "fzf-env/theme"
 zsh_source_file "util/webdev"
 zsh_source_file "util/instructor-git-token-update"
 zsh_source_file "zsh-notify"
+zsh_source_file "zsh-exports"
 
 # Plugin Manager
 zsh_install_plugin "zsh-users/zsh-autosuggestions"
@@ -76,3 +76,6 @@ compinit
 # Edit line in vim with ctrl-e:
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
+
+# JAVA DEFAULT
+export PATH="/opt/homebrew/opt/openjdk@17/bin:$PATH"
