@@ -78,4 +78,4 @@ autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
 
 # JAVA DEFAULT
-export PATH="/opt/homebrew/opt/openjdk@17/bin:$PATH"
+export PATH="$(brew --prefix)/opt/openjdk@17/bin:$PATH"
