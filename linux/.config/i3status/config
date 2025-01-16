@@ -1,0 +1,31 @@
+general {
+    colors = true
+    interval = 2
+}
+
+order += "disk /"
+order += "memory"
+order += "cpu_usage"
+order += "tztime local"
+
+disk "/" {
+    format = "sda1: %avail"
+}
+
+
+memory {
+}
+
+memory {
+        format = "RAM: %used / %total"
+        threshold_degraded = "10%"
+        format_degraded = "MEMORY: %free"
+}
+
+cpu_usage {
+    format = "CPU: %usage"
+}
+
+tztime local {
+        format = "%Y-%m-%d %H:%M:%S"
+}
