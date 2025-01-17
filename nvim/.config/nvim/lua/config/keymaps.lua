@@ -25,4 +25,12 @@ setkey('n', '<s-tab>', ':tabprev<Return>', opts)
 setkey('n', '<leader>rn', ':IncRename ')
 
 -- FZF
+vim.keymap.set('n', ';;', require('fzf-lua').resume)
 vim.keymap.set('n', ';f', require('fzf-lua').files, { desc = 'Fzf Files' })
+vim.keymap.set('n', ';r', require('fzf-lua').live_grep_resume)
+vim.keymap.set('n', ';q', require('fzf-lua').quickfix)
+vim.keymap.set('n', ';b', require('fzf-lua').grep_curbuf)
+vim.keymap.set('n', ';e', require('fzf-lua').diagnostics_workspace)
+vim.keymap.set('n', ';s', require('fzf-lua').grep_cword)
+vim.keymap.set('n', ';c', require('fzf-lua').colorschemes)
+require('fzf-lua').setup({ keymap = { builtin = { true, ['<Esc>'] = 'hide' } } })
