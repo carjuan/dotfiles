@@ -14,6 +14,7 @@ return {
         'scss',
         'sql',
         'svelte',
+        'pug',
       })
 
       -- ISSUE: Treesitter stopped highlighting 'md' files after breaking change
