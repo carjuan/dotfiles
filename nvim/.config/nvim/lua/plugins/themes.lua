@@ -2,7 +2,7 @@ return {
   -- add gruvbox.nvim
   {
     'ellisonleao/gruvbox.nvim',
-    opts = { transparent_mode = false },
+    opts = { transparent_mode = true },
   },
 
   -- add kanagawa
@@ -56,6 +56,15 @@ return {
     --   config = bar
     --   end,
   },
+  {
+    'ficcdaf/ashen.nvim',
+    lazy = false,
+    priority = 1000,
+    -- configuration is optional!
+    opts = {
+      -- your settings here
+    },
+  },
 
   -- add catppuccin
   {
@@ -64,9 +73,9 @@ return {
     priority = 1000,
     config = function()
       require('catppuccin').setup({
-        flavour = 'mocha', -- latte, frappe, macchiato, mocha
+        flavour = 'macchiato', -- latte, frappe, macchiato, mocha
         term_colors = true,
-        transparent_background = false,
+        transparent_background = true,
         no_italic = false,
         no_bold = false,
         styles = {
