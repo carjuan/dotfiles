@@ -102,7 +102,7 @@ bindsym $mod+f fullscreen toggle
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+bindsym $mod+slash layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -230,3 +230,6 @@ exec --no-startup-id i3-config-wizard
 
 # Auto start programs
 exec --no-startup-id ~/.config/i3/util/autostart-apps.sh
+
+# GRUVBOX THEME
+client.focused_workspace  #fe8019 #285577 #ffffff #ff2800 #fe8019
