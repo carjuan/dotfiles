@@ -7,8 +7,9 @@ return {
   -- disables vim.ui plugin for better input
   { 'stevearc/dressing.nvim', enabled = false },
 
-  -- disables markdown highlight
   { 'lukas-reineke/headlines.nvim', enabled = false },
+
+  { 'MeanderingProgrammer/render-markdown.nvim', enabled = false },
 
   { 'rcarriga/nvim-notify', enabled = false },
 
