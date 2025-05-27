@@ -18,4 +18,8 @@ export FZF_CTRL_R_OPTS="
   --color header:italic
   --header 'Press CTRL-Y to copy command into clipboard'"
 
-[ -f "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/key-bindings.zsh ] && source "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/key-bindings.zsh
+#[ -f "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/key-bindings.zsh ] && source "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/key-bindings.zsh
+
+# Option available after 0.48.0
+# Set up fzf key bindings and fuzzy completion
+source <(fzf --zsh)
