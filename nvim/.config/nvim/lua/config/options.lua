@@ -12,7 +12,7 @@ opt.scrolloff = 10
 opt.cmdheight = 0 -- Experimental feature
 opt.laststatus = 3
 opt.foldmethod = 'marker'
-opt.colorcolumn = '90'
+opt.colorcolumn = '120'
 opt.conceallevel = 0 -- Shows text normally, specially for .json files ("") and .md lang
 
 -- Filenames -> More info on :h statusline

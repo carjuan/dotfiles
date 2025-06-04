@@ -1,7 +1,6 @@
-local create_command = vim.api.nvim_create_user_command
-local opt = vim.opt
+require('config/formatting')
 
-opt.shiftwidth = 4
+local create_command = vim.api.nvim_create_user_command
 
 create_command('R', function()
   vim.cmd('write')
