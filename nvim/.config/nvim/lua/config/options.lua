@@ -14,6 +14,8 @@ opt.laststatus = 3
 opt.foldmethod = 'marker'
 opt.colorcolumn = '120'
 opt.conceallevel = 0 -- Shows text normally, specially for .json files ("") and .md lang
+opt.shiftwidth = 4
+opt.tabstop = 4
 
 -- Filenames -> More info on :h statusline
 -- vim.cmd([[set winbar=%=%r%m%w\ %#OwnWinBar#\ %L\ lines\ in:\ %f]])
