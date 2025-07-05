@@ -38,6 +38,20 @@ return {
     opts = {
       servers = {
         cssls = {},
+        -- FIX: Only to extend to 'css' files for linting with eslint
+        eslint = {
+          filetypes = {
+            'javascript',
+            'javascriptreact',
+            'javascript.jsx',
+            'typescript',
+            'typescriptreact',
+            'typescript.tsx',
+            'vue',
+            'svelte',
+            'css',
+          },
+        },
         vtsls = {
           settings = {
             typescript = {
