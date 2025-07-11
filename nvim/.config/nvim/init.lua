@@ -1,8 +1,6 @@
--- bootstrap lazy.nvim, LazyVim and your plugins
+-- bootstrap lazy.nvim
 require('config.lazy')
 
--- User defined functions and cmds
-require('config.globals')
+require('user.globals')
 
--- User defined functions and cmds
 require('user.cmds')
