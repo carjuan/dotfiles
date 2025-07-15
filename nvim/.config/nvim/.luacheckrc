@@ -1,3 +1,4 @@
+-- FIX: listing all default lua globals
 std = {
-  globals = { 'vim', 'require' },
+    globals = { 'assert', 'vim', 'require', 'pairs', 'ipairs', 'error', 'pcall', 'type', 'print' },
 }
