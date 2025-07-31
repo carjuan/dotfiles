@@ -1,41 +1,9 @@
 local wezterm = require("wezterm")
 
 return {
-	-- Live reload
 	automatically_reload_config = true,
 
-	-- Colorscheme
-	colors = {
-		foreground = "#e6e6e6",
-		background = "#292a2b",
-		cursor_bg = "#ffb86c",
-		cursor_fg = "#fefff2",
-		cursor_border = "#ffb86c",
-		selection_bg = "#555555",
-		selection_fg = "#e6e6e6",
-
-		ansi = {
-			"#292a2b", -- black
-			"#ff2c6d", -- red
-			"#19f9d8", -- green
-			"#ffb86c", -- yellow
-			"#45a9f9", -- blue
-			"#ff75b5", -- magenta
-			"#6fc1ff", -- cyan
-			"#e6e6e6", -- white
-		},
-		brights = {
-			"#555555", -- bright black
-			"#ff2c6d", -- bright red
-			"#19f9d8", -- bright green
-			"#ffcc95", -- bright yellow
-			"#6fc1ff", -- bright blue
-			"#ff9ac1", -- bright magenta
-			"#6fc1ff", -- bright cyan
-			"#ffffff", -- bright white
-		},
-	},
-
+	color_scheme = "Panda (Gogh)",
 	-- Cursor settings
 	default_cursor_style = "BlinkingBlock",
 	cursor_blink_rate = 0, -- Blinking "Never"
