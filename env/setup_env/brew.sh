@@ -11,13 +11,6 @@ function install_brew() {
     notify "ERROR" "Failed to install Brew. Make sure you have internet connection. Try again. If the issue persists, try installing it manually."
   fi
 
-  case "${OS}" in
-  Linux)
-    # Install brew dependencies build-esential and gcc
-    sudo apt-get install build-essential gcc -y
-    ;;
-  esac
-
   # Make sure brew is active in current shell session
   eval "$(${INSTALL_PATH}/brew shellenv)" && echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >>~/.zshrc
 }

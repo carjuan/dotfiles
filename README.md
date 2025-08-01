@@ -71,7 +71,7 @@ Ensure you have `sudo` access and the following packages are installed
 ```bash
 sudo apt update && \
   sudo apt upgrade -y && \
-  sudo apt install curl git ca-certificates fontconfig unzip zsh vim -y
+  sudo apt install curl git ca-certificates fontconfig unzip zsh vim pavucontrol build-essential gcc -y
 ```
 
 #### macOS
