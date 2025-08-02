@@ -27,32 +27,6 @@ if pgrep tmux &>/dev/null && [[ ! ${TMUX_NUMBER_OF_PLUGINS_INSTALLED} -gt ${TMUX
   print_installation_instruction "${TMUX_PLUGINS_INSTRUCTIONS}"
 fi
 
-# MISC TOOLS
-OBSIDIAN_INSTRUCTIONS='
-1. Get appimage from https://obsidian.md/
-2. Create folder /home/appimages if it is not already
-    sudo mkir /home/appimages
-3. Make sure appimages work and move app to /home/appimages
-    sudo apt install fuse libfuse2 -y && \
-    sudo mv ~/Downloads/Obsidian-<app-version>.AppImage /home/appimages
-4. Create sym link
-    sudo ln -s /home/appimages/Obsidian-<app-version>.AppImage /usr/local/bin/obsidian
-'
-
-# NOTE: Make sure to set executable permission on the appimage
-# chmod +x <appimage>
-
-RESPONSIVELY_INSTRUCTIONS='
-1. Download `appimage` from https://responsively.app/
-2. Create folder /home/appimages if it is not already
-    sudo mkir /home/appimages
-3. Make sure appimages work and move app to /home/appimages
-    sudo apt install fuse libfuse2 -y && \
-    sudo mv ~/Downloads/ResponsivelyApp-<app-version>.AppImage /home/appimages
-4. Create sym link
-    sudo ln -s /home/appimages/ResponsivelyApp-<app-version>.AppImage /usr/local/bin/responsively
-'
-
 i3_INSTRUCTIONS='
 1. Run the following:
     # Verify if wmctrl is installed.
@@ -62,40 +36,21 @@ i3_INSTRUCTIONS='
     brew install wmctrl || sudo apt install wmctrl
 
     # Install i3
-    sudo apt install i3
-'
-
-POSTMAN='
-1. Go to https://www.postman.com/downloads/
-2. Get linux version
-3. tar xvzf PACKAGENAME.tar.gz -- extract
-4. sudo mv PACKAGENAME to /home/appimages
-6. navigate to /usr/local/bin/
-7. Run
-  sudo ln -s /home/appimages/Postman/Postman ./postman
+    sudo apt install i3 or see oficial apt repos https://i3wm.org/docs/repositories.html
 '
 
 function check_system_apps() {
-  local LINUX_APPS=("spotify" "flameshot" "obs" "obsidian" "responsively" "brave-browser" "firefox-devedition" "i3" "alacritty" "wezterm")
+  local LINUX_APPS=("spotify" "flameshot" "brave-browser" "firefox-devedition" "i3" "wezterm")
 
   for app in "${LINUX_APPS[@]}"; do
     if ! command -v "${app}" &>/dev/null; then
       notify "${app}" "This app is NOT installed. See guide below:"
       case ${app} in
-        spotify| flameshot| obs| brave-browser | firefox-devedition | alacritty)
+        spotify | flameshot | brave-browser | firefox-devedition | wezterm)
           echo "Instructions to install ${app} can be found: https://www.google.com/search?q=${app}+linux"
-        ;;
-        obsidian)
-          print_installation_instruction "${OBSIDIAN_INSTRUCTIONS}"
         ;;
         i3)
           print_installation_instruction "${i3_INSTRUCTIONS}"
-        ;;
-        responsively)
-          print_installation_instruction "${RESPONSIVELY_INSTRUCTIONS}"
-        ;;
-      postman)
-        print_installation_instruction "${POSTMAN}"
         ;;
       *) 
           notify "zsh-notify:" "no instructions were provided for this ${app} "
