@@ -10,7 +10,7 @@ return {
 	force_reverse_video_cursor = false, -- equivalent to unfocused_hollow=false in Alacritty
 
 	-- Font settings
-	font = wezterm.font("FiraCode Nerd Font Propo", { weight = "Bold" }),
+	font = wezterm.font("JetBrainsMono NFM ExtraLight", { weight = "Bold" }),
 	font_size = 16.0,
 	adjust_window_size_when_changing_font_size = false,
 
