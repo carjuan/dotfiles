@@ -158,7 +158,7 @@ alias grv='git remote -v'
 
 # ########## LINUX ONLY ALIAS ###############
 # Change default audio output
-# List avaialble devices running 'pactl list | grep "Monitor of Sink"'.
-alias out-speakers='pactl set-default-sink alsa_output.pci-0000_2d_00.4.analog-stereo'
-alias out-fiio='pactl set-default-sink alsa_output.usb-GuangZhou_FiiO_Electronics_Co._Ltd_FiiO_K7-00.analog-stereo'
-alias out-nova='pactl set-default-sink alsa_output.usb-SteelSeries_Arctis_Nova_Pro_Wireless-00.analog-stereo'
+# List avaialble devices running 'wpctl status
+alias out-speakers='wpctl set-default 50'
+alias out-fiio='wpctl set-default 76'
+alias out-nova='wpctl set-default 40'

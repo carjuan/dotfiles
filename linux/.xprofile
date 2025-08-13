@@ -7,9 +7,12 @@ xrandr --output DP-0 --left-of HDMI-0
 xrandr --output DP-4 --right-of HDMI-0
 
 # ###### Find avaliable audio output ######
-# pactl list | grep "Monitor of Sink"
-# ####################################
+# Determine its ID under 'Sinks'
+# wpctl status
+# #########################################
 
-# adjust system wide volume when changing audio output. Defaults to 50%
-# pactl set-sink-volume @DEFAULT_SINK@ <percent>%
-pactl set-default-sink alsa_output.pci-0000_2d_00.4.analog-stereo
+# adjust system wide volume when changing audio output.
+# wpctl set-volume @DEFAULT_AUDIO_SINK@ <percent>%
+if wpctl insepct 76 &>/dev/null; then
+    wpctl set-default 76
+fi
