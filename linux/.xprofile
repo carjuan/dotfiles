@@ -1,10 +1,10 @@
 xrandr --output HDMI-0 --mode 3840x2160 --rate 120
 xrandr --output DP-0 --mode 2560x1440 --rate 120
 xrandr --output DP-0 --rotate left --rate 120
-xrandr --output DP-4 --mode 2560x1440 --rate 120
-xrandr --output DP-4 --rotate right --rate 120
+xrandr --output DP-2 --mode 2560x1440 --rate 120
+xrandr --output DP-2 --rotate right --rate 120
 xrandr --output DP-0 --left-of HDMI-0
-xrandr --output DP-4 --right-of HDMI-0
+xrandr --output DP-2 --right-of HDMI-0
 
 # ###### Find avaliable audio output ######
 # Determine its ID under 'Sinks'
