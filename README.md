@@ -138,7 +138,7 @@ I suggest installing [nvm](https://github.com/nvm-sh/nvm) for managing `node` ve
 # XDG_CONFIG_HOME ensures nvm is installed at $HOME/.config. See `nvm` docs for more info.
 # `nvm install node` - installs latest Node version. See `nvm` docs for more info
 export XDG_CONFIG_HOME=$HOME/.config && \
-  bash -c 'curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash' && \
+  bash -c 'curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash' && \
   source ~/.zshrc && \
   nvm install node
 ```
