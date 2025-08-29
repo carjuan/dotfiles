@@ -19,17 +19,27 @@ return {
     -- disable fancy tablines line
     { 'akinsho/bufferline.nvim', enabled = false },
 
-    { 'folke/snacks.nvim', opts = { dashboard = { enabled = false } } },
-
-    { 'nvim-neo-tree/neo-tree.nvim', enabled = false },
-
-    -- Snacks notifier
     {
         'folke/snacks.nvim',
+        -- enabled = false,
         opts = {
+            explorer = {
+                enabled = false,
+            },
+            dashboard = {
+                enabled = false,
+            },
             notifier = {
+                enabled = false,
+            },
+            image = {
+                enabled = false,
+            },
+            preview = {
                 enabled = false,
             },
         },
     },
+
+    { 'nvim-neo-tree/neo-tree.nvim', enabled = false },
 }
