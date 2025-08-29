@@ -1,5 +1,7 @@
 -- Disbales 'no information available lsp message'
 -- Adds borders to lsp hover tooltip
+local util = require('lspconfig.util')
+
 vim.lsp.handlers['textDocument/hover'] = function(_, result, ctx, config)
     config = config
         or {
@@ -31,13 +33,43 @@ vim.lsp.handlers['textDocument/hover'] = function(_, result, ctx, config)
     return vim.lsp.util.open_floating_preview(markdown_lines, 'markdown', config)
 end
 
+local stylelint_lsp_root_file = {
+    '.stylelintrc',
+    '.stylelintrc.mjs',
+    '.stylelintrc.cjs',
+    '.stylelintrc.js',
+    '.stylelintrc.json',
+    '.stylelintrc.yaml',
+    '.stylelintrc.yml',
+    'stylelint.config.mjs',
+    'stylelint.config.cjs',
+    'stylelint.config.js',
+}
+
+stylelint_lsp_root_file = util.insert_package_json(stylelint_lsp_root_file, 'stylelint')
+
 return {
     -- Sets up servers
     {
         'neovim/nvim-lspconfig',
         opts = {
             servers = {
-                cssls = {},
+                stylelint_lsp = {
+                    filetypes = {
+                        'astro',
+                        'css',
+                        'scss',
+                        'less',
+                    },
+                    root_markers = stylelint_lsp_root_file,
+                    settings = {
+                        autoFixOnSave = true,
+                        autoFixOnFormat = true,
+                    },
+                },
+                cssls = {
+                    settings = {},
+                },
                 -- FIX: Only to extend to 'css' files for linting with eslint
                 eslint = {
                     filetypes = {
@@ -83,6 +115,14 @@ return {
                     },
                 },
             },
+            -- attaching callbacks on client attachs
+            -- setup = {
+            --     stylelint_lsp = function(_, opts)
+            --         opts.on_attach = function(client, bufnr)
+            --             print('attaching boy!!!')
+            --         end
+            --     end,
+            -- },
         },
     },
 
@@ -109,6 +149,8 @@ return {
                 'stylua',
                 'shfmt',
                 'prettierd',
+                'stylelint-lsp',
+                'stylelint', -- formatter
             })
         end,
     },

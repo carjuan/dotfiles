@@ -41,6 +41,13 @@ M.formatter = {
             'typescriptreact',
         },
     },
+    stylelint = {
+        enabled = {
+            'css',
+            'scss',
+            'less',
+        },
+    },
 }
 
 return M
