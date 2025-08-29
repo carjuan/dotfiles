@@ -11,7 +11,9 @@ return {
 
         -- enable stylelint only for css like files
         for _, ft in ipairs(constants.formatter.stylelint.enabled) do
-            opts.formatters_by_ft[ft] = { 'stylelint' }
+            --
+            -- NOTE: If running prettier as linter plugin in `stylelint`
+            opts.formatters_by_ft[ft] = { 'stylelint', 'prettier' }
         end
 
         -- opts.formatters_by_ft['html'] = { 'stylelint', 'prettierd' }
