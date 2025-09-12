@@ -1,16 +1,18 @@
 #!/usr/bin/env bash
 
 # neopunk
-FZF_DEFAULT_OPTS='
-    --layout=reverse
-    --color fg:#23B0BA,bg:#121212,hl:#ffa348,fg+:#ebdbb2,bg+:#000000,hl+:#fabd2f
-    --color info:#83a598,prompt:#23B0BA,spinner:#fabd2f,pointer:#23B0BA,marker:#23B0BA,header:#23B0BA
-    --prompt="➤ "
-    --height 80%
+export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
+  --layout=reverse
+  --color=fg:#d0d0d0,fg+:#aa2b71,bg:#000000,bg+:#110b0b
+  --color=hl:#5f87af,hl+:#5fd7ff,info:#66bf91,marker:#aa2b71
+  --color=prompt:#d7005f,spinner:#af5fff,pointer:#af5fff,header:#87afaf
+  --color=gutter:#040000,border:#aa2b71,label:#aeaeae,query:#d9d9d9
+  --border="rounded" --border-label="" --preview-window="border-rounded" --prompt="➤ "
+  --height 80% --marker=">" --pointer="◆" --separator="─" --scrollbar="│"
 '
 
 #gruvbox
-# FZF_DEFAULT_OPTS='
+#export FZF_DEFAULT_OPTS='
 #     --layout=reverse
 #     --color fg:#ebdbb2,bg:#121212,hl:#ffa348,fg+:#ebdbb2,bg+:#000000,hl+:#fabd2f
 #     --color info:#83a598,prompt:#ffa348,spinner:#fabd2f,pointer:#ffa348,marker:#ffa348,header:#665c54
