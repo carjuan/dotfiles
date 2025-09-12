@@ -7,7 +7,7 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
   --color=hl:#5f87af,hl+:#5fd7ff,info:#66bf91,marker:#aa2b71
   --color=prompt:#d7005f,spinner:#af5fff,pointer:#af5fff,header:#87afaf
   --color=gutter:#040000,border:#aa2b71,label:#aeaeae,query:#d9d9d9
-  --border="rounded" --border-label="" --preview-window="border-rounded" --prompt="➤ "
+  --border="rounded" --border-label="" --preview-window="border-double" --prompt="➤ "
   --height 80% --marker=">" --pointer="◆" --separator="─" --scrollbar="│"
 '
 
