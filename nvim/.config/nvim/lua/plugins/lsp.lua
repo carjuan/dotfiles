@@ -137,7 +137,7 @@ return {
     -- Install lsps and hooks with lsp to ensure servers are installed with the necessary
     -- configuration
     {
-        'williamboman/mason.nvim',
+        'mason-org/mason.nvim',
         opts = function(_, opts)
             vim.list_extend(opts.ensure_installed, {
                 'luacheck',
