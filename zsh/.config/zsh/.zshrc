@@ -52,13 +52,6 @@ zsh_install_plugin "zsh-users/zsh-autosuggestions"
 zsh_install_plugin "zsh-users/zsh-syntax-highlighting"
 zsh_install_plugin "hlissner/zsh-autopair"
 
-
-#### Key-bindings override
-## FZF
-bindkey -r '^T'
-bindkey '^W' fzf-file-widget
-
-
 # Install completion plugins
 # zsh_add_completion "esc/conda-zsh-completion" false
 # More completions https://github.com/zsh-users/zsh-completions
